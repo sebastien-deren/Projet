@@ -1,5 +1,6 @@
 <?php
-    include('includes/function.php');
+    include('function.php');
+
     /* verifier que la personne est connecté au compte
     si elle ne l'est pas afficher la page de connection.
     si elle l'est:
@@ -9,7 +10,8 @@
         ['nom' => 'jean',
         'prenom' => 'valjean',
         'mail' => 'jean.valjean@text.p',
-        'mdp' => '1234',],
+        'mdp' => '1234',
+        ],
         ['nom' => 'poulet',
         'prenom'=> 'cotcot',
         'mail'=>'poulet.cotcot@terxt.d',
@@ -27,34 +29,34 @@
 ?>
 
 <?php
+    
     $connecter =false;
     $connection=false;
-    if(isset($_POST['pseudo']) && isset ($_POST['mdp'])){
-        $pseudo = $_POST['pseudo'];
-        $mdp =$_POST['mdp']; 
-    }
     if(isset($_POST['connection'])){
-        $connection=true;
+        $status_log = connection($_POST['pseudo'], $_POST['mdp'], $users);
     }
-
-
-    if($_POST['inscription']){
-        $connecter =true;
-        echo('<p> ici il y aura le formulaire d\'inscription</p>');
-    }
-    elseif($connection){
-        foreach($users as $user){
-            if($pseudo==$user['nom'] && $mdp==$user['mdp']){
-                echo('<p> bonjour '. $user['nom'] . ', '. $user['prenom'] . ' et bienvenu sur le site');
-                $connecter = true;
-            }
+    echo ("<h1>".$status_log."</h1>");
+    if(isset($status_log)){
+        if($status_log==="erreur"){
+            echo"<p>erreur</p>";
+            include('formulaire_connection.php');
         }
-            /*
-            la connection fonctionne
+        else if($status_log==="not_set"){
+            echo"<p>not_set</p>";
+            include('formulaire_connection.php');
+        }
+        else{
+            $n_user=intval($status_log);
+            echo('<p> bonjour '. $users[$n_user]['nom'] . ', '. $users[$n_user]['prenom'] . ' et bienvenu sur le site</p>');
+            /*la connection fonctionne
             il faut tout d'abord ajouter un tableau d'utilisateur a vérifier
             puis il faudra ajouter le marché,*/
+         }
+    }
+    else{
+        echo("<p> erreur status_log</p>");
+        include('formulaire_connection.php');
     }
 
-    if(!$connecter) formulaire($connection);
 ?>
     

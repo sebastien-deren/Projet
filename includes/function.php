@@ -1,14 +1,15 @@
 <?php
-function formulaire(bool $connect)
-{
-    if($connect) echo("<p> le mot de passe ou nom d'utilisateur est érroné</>");
-?>
-    <form method ="post" action="start.php">
-    <p> bonjour, merci de vous connectez sur notre site !</p>
-    <p>votre nom d'utilisateur ou email. <input type="text" name="pseudo"/></p>
-    <p>votre mot de passe <input type="password" name="mdp"/></p>
-    <p><input type ="submit" value="se connecter" name="connection"/> </p>
-    <p><input type="submit" value="inscription" name="inscription"/> </p>
-    </form>
-
-<?php }
+/* fonction traitant de la connection des utilisateurs*/
+function connection(string $nom,string $mdp,array $users):string{
+    echo("$nom");
+    echo("$mdp");
+    if($nom!="" || $mdp!=""){
+        for($i=0;$i<count($users);$i++){
+            if($users[$i]['nom']==$nom && $users[$i]['mdp']==$mdp){
+                return "$i"; 
+            }
+        }
+        return "erreur";
+    }
+    return "not_set";
+}
