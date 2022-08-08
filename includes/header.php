@@ -7,7 +7,12 @@
                         <img class="photo" src="./images/avatar.jpg" alt="ma photo"/>
                     </div>
                     <div id="presentation">
-                        <h1>Sébatien Deren</h1>
+                        <?php if(isset($user)){
+                            echo("<h1>".$user['nom']."</h1>");
+                        }
+                        else{
+                            echo("<h1>connecter vous</h1>");
+                        }?>
                         <h2>apprenti developeur Web</h2>
                     </div>
                 </header>
