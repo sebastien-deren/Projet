@@ -20,8 +20,30 @@
 
         
         ];
-    $produits =[
+        $products =[[
+            'name' => 'beurre',
+            'quantity' => '25',
+            'unit_quantity' =>'250g',
+            'price' => '1.5',
+        ],
+        [
+            'name' =>'lait',
+            'quantity' => '100',
+            'unit_quantity'=> 'L',
+            'price' => '0.89',
+        ],
+        [
+            'name' => 'emmental',
+            'quantity' => '25',
+            'unit_quantity'=>'Kg',
+            'price' => '15'
+        ],
+        [
+            'name' => 'reblochon',
+            'quantity' => '30',
+            'unit_quantity' => 'piece',
+            'price' => '7', 
+        ],
 
     ];
-
-?>
+    ?>

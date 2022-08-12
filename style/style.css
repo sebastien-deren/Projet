@@ -1,4 +1,40 @@
 
+
+.tableau
+{
+    margin-left: 2vh;
+    margin-right: 5vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid #000;
+    align-items: stretch;
+}
+.tete_tableau, .corps_tableau{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.element_tete, .element_tableau, .element_achat {
+    flex: 1;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    text-align: left;
+    align-items: center;
+    padding: 0.7vh;
+}
+.element_achat{
+    text-align: center;
+}
+
+.element_tete{
+    padding-bottom: 1vh;
+    font-weight: bold;
+}
+
 a{
     text-decoration: none;
     color: #666;
@@ -78,7 +114,7 @@ body{
                 border-bottom: 1px solid white;
             }
         .icon{
-            width: 1em;
+            widdiv: 1em;
             height: 1em;
             text-align: left ;
 
@@ -105,9 +141,6 @@ body{
             height:100vh;
         }
 
-        #right div{
-            height: 50vh;
-        }
 article{
     height:100vh ;
     display: flex;
@@ -133,20 +166,20 @@ article{
     }
     #intro h2
     {
-        width: 50%;
+        widdiv: 50%;
         font-size: 3em;
         margin-bottom: 0%;
         font-weight: normal;
     }
     #intro h3{
-        width:50%;
+        widdiv:50%;
         margin-bottom: 4vh;
         font-weight: normal;
 
     }
     .button{
         padding-top: 10%;
-        width: 25vh;
+        widdiv: 25vh;
         max-height: 50%;
         background-color:#8ebebc;;
         border-radius: 11px;
@@ -173,7 +206,7 @@ article{
         margin-bottom: 20vh;
     }
     .imgpj{
-        width: 30vh;
+        widdiv: 30vh;
         height: auto;
      }
     figcaption{
