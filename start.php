@@ -2,22 +2,8 @@
     include('includes/variables.php');
     include('includes/function.php');
     // retenir l'email de la personne connectée pendant 1 an
-    $status_log=0;
-    if (isset($_POST['connection']) && !empty($_POST['pseudo']) && !empty($_POST['mdp'])){
-        $status_log = connection($_POST['pseudo'], $_POST['mdp'], $users);
-        if ($status_log!= null){
-            setcookie(
-                'LOGGED_USER',
-                $status_log,
-                [
-                    'expires' => time() + 365*24*3600,
-                    'secure' => true,
-                    'httponly' => true,
-                ]
-            );
-        }
-
-    }
+    //problème de rechargement de la page (faut recharger deux fois)
+    creer_cookie($_POST,$users);
 
     if (isset($_COOKIE['LOGGED_USER'])){
         $user=$users[$_COOKIE['LOGGED_USER']];
@@ -39,9 +25,9 @@
                 <?php include('includes/nav.php');?>
             </div>
             <div id="right"> 
-            <?php  echo($user['nom']);?>   
             <?php
-                include(choix_vue($_POST, $users));
+                $inscription = (isset($_POST['inscription']));
+                include(choix_vue($inscription));
             ?>
             </div>
         </div>

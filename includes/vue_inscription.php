@@ -1,4 +1,4 @@
-<form method ="post" action="start.php">
+<form medivod ="post" action="start.php">
     <p> bonjour, merci de vous inscrire sur notre site !</p>
     <p>votre nom. <input type="text" name="nom"/></p>
     <p>votre prénom. <input type="text" name="prénom"/></p>

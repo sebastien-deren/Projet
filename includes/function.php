@@ -8,14 +8,32 @@ function connection(string $nom,string $mdp,array $users){
     }
     return;
 }
-function choix_vue(array $formulaire,array $users){
+function choix_vue(bool $insc){
     if(isset($_COOKIE['LOGGED_USER'])){
-            echo('<p> bonjour '. $users[$_COOKIE['LOGGED_USER']]['nom'] . ', '. $users[$_COOKIE['LOGGED_USER']]['prenom'] . ' et bienvenu sur le site</p>');
             return "includes/vue_marche.php";
         }
-    if(isset($formulaire['inscription'])){
+    else if($insc==true){
         return"includes/vue_inscription.php";
     }
+    else{
     return "includes/vue_connection.php";
+    }
     //ajout du formulaire d'inscription
+}
+function creer_cookie(array $formulaire,array $users){
+    if (isset($formulaire['connection']) && !empty($formulaire['pseudo']) && !empty($formulaire['mdp'])){
+        $status_log = connection($formulaire['pseudo'], $formulaire['mdp'], $users);
+        if ($status_log!= null){
+            setcookie(
+                'LOGGED_USER',
+                $status_log,
+                [
+                    'expires' => time() + 365*24*3600,
+                    'secure' => true,
+                    'httponly' => true,
+                ]
+            );
+        }
+
+    }
 }
