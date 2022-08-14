@@ -7,8 +7,8 @@
                         <img class="photo" src="./images/avatar.jpg" alt="ma photo"/>
                     </div>
                     <div id="presentation">
-                        <?php if(isset($user)){
-                            echo("<h1>".$user['nom']."</h1>");
+                        <?php if(isset($_SESSION['FULL_NAME'])){
+                            echo("<h1>".$_SESSION['FULL_NAME']."</h1>");
                         }
                         else{
                             echo("<h1>connecter vous</h1>");

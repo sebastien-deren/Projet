@@ -114,7 +114,7 @@ body{
                 border-bottom: 1px solid white;
             }
         .icon{
-            widdiv: 1em;
+            width: 1em;
             height: 1em;
             text-align: left ;
 
@@ -166,20 +166,20 @@ article{
     }
     #intro h2
     {
-        widdiv: 50%;
+        width: 50%;
         font-size: 3em;
         margin-bottom: 0%;
         font-weight: normal;
     }
     #intro h3{
-        widdiv:50%;
+        width:50%;
         margin-bottom: 4vh;
         font-weight: normal;
 
     }
     .button{
         padding-top: 10%;
-        widdiv: 25vh;
+        width: 25vh;
         max-height: 50%;
         background-color:#8ebebc;;
         border-radius: 11px;
@@ -206,7 +206,7 @@ article{
         margin-bottom: 20vh;
     }
     .imgpj{
-        widdiv: 30vh;
+        width: 30vh;
         height: auto;
      }
     figcaption{

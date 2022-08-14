@@ -1,13 +1,21 @@
-<?php 
+<?php
+    session_start();
+    //include('config/mysql.php');
     include('includes/variables.php');
     include('includes/function.php');
     // retenir l'email de la personne connectée pendant 1 an
     //problème de rechargement de la page (faut recharger deux fois)
-    creer_cookie($_POST,$users);
-
-    if (isset($_COOKIE['LOGGED_USER'])){
-        $user=$users[$_COOKIE['LOGGED_USER']];
-        
+    if(isset($_POST['connection'])){
+        $cook=creer_cookie();
+        $co='ouit';
+    }
+    if(isset($_POST['inscrit'])){
+        $verif_form=inscription($_POST);
+        foreach($verif_form as $verif_champ){
+            if($verif_champ ==false){
+                $_POST['inscription']="reinscription"; 
+            }
+        }
     }
     ?>
 <!doctype html>
@@ -18,17 +26,17 @@
         <title>Marché de pro </title>
     </head>
     <body id="page">
-
         <div id="corps_texte">
             <div id="left">
                 <?php include('includes/header.php'); ?>
                 <?php include('includes/nav.php');?>
             </div>
             <div id="right"> 
-            <?php
-                $inscription = (isset($_POST['inscription']));
-                include(choix_vue($inscription));
-            ?>
+                <?php echo"<p>".$co."</p>";?>
+                <?php echo "<p>".$_SESSION['FULL_NAME']."</p>";
+                echo "<p>".$_COOKIE['LOGGED_USER'].$cook."</p>";?>
+
+            <?php include('vue/vue.php');?>
             </div>
         </div>
     </body>
