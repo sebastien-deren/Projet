@@ -4,7 +4,10 @@
     include('includes/variables.php');
     include('includes/function.php');
     // retenir l'email de la personne connectée pendant 1 an
-    //problème de rechargement de la page (faut recharger deux fois)
+    if(isset($_POST['checkout'])){
+        delete_panier();
+        $_SESSION['panier']==null;
+    }
     if(isset($_POST['connection'])){
         $cook=creer_cookie();
         $co='ouit';
@@ -35,7 +38,7 @@
                 <?php
                 if(isset($co))echo"<p>".$co."</p>";
                 if(isset($_SESSION['FULL_NAME']))echo "<p>".$_SESSION['FULL_NAME']."</p>";
-                if(isset($_COOKIE['LOGGED_USER'])) echo "<p>".$_COOKIE['LOGGED_USER']."".$cook."</p>";
+                if(isset($_COOKIE['LOGGED_USER'])) echo "<p>".$_COOKIE['LOGGED_USER']."</p>";
                 ?>
 
             <?php include('vue/vue.php');?>

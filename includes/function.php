@@ -128,10 +128,25 @@ function category_product_db():array
     
     return $table_cat;
 }
+function get_max_id_product():int{
+    include('config/mysql.php');
+    $sql_querry='SELECT MAX(id_product) FROM products';
+    $max_statement=$db->prepare($sql_querry);
+    $max_statement->execute();
+    $max_id=$max_statement->fetch();
+    return $max_id[0];
+    
+}
 
 function product_db($category):array
 {
     include('config/mysql.php');
+    if($category=="false"){
+    $sql_querry='SELECT * from products';
+    $product_statement=$db ->prepare($sql_querry);
+    $product_statement->execute();
+    }
+    else{
     $sql_querry='SELECT id_product,name, quantity, unit_quantity, price
                 FROM products WHERE category = :category';
     $product_statement =$db ->prepare($sql_querry);
@@ -140,5 +155,62 @@ function product_db($category):array
             'category'=>$category,
         ]
         );
+    }
     return $product_statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function add_cart($id,$quantity):bool{
+    include('config/mysql.php');
+    $sql_querry=('SELECT id_panier FROM panier WHERE id_product= :id_product AND id_user=:id_user');
+    $id_check=$db->prepare($sql_querry);
+    $id_check->execute(
+        [
+            'id_product'=>$id,
+            'id_user' =>$_COOKIE['LOGGED_USER'],
+        ]
+        );
+    $in_cart=$id_check->fetchALL();
+    if(empty($in_cart)){
+        $sql_querry='INSERT INTO panier(id_product, id_user,quantity_cart) VALUES(:id_product,:id_user,:quantity_cart)';
+        $panier_insert =$db->prepare($sql_querry);
+        $panier_insert->execute(
+            [
+                'id_product' => $id,
+                'id_user' => $_COOKIE['LOGGED_USER'],
+                'quantity_cart'=>$quantity,
+    
+    
+            ]
+        );
+        return true;
+    }
+    else{
+        $sql_querry='UPDATE panier SET quantity_cart = :quantity_cart WHERE id_product=:id_product AND id_user=:id_user';
+        $panier_insert =$db->prepare($sql_querry);
+        $panier_insert->execute(
+            [
+                'id_product' => $id,
+                'id_user' => $_COOKIE['LOGGED_USER'],
+                'quantity_cart'=>$quantity,
+    
+    
+            ]
+        );
+        return true;
+    }
+    return false;
+}
+function get_panier():array{
+    include('config/mysql.php');
+    $sql_querry='SELECT p.*, c.quantity_cart FROM panier c INNER JOIN products p ON c.id_product=p.id_product 
+                WHERE c.id_user=:id_user
+                ORDER BY p.category';
+    $panier_print=$db->prepare($sql_querry);
+    $panier_print->execute(
+        [
+            'id_user'=> $_COOKIE['LOGGED_USER'],
+        ]
+        );
+        return $panier_print->fetchAll(PDO::FETCH_ASSOC);
+
 }
