@@ -1,35 +1,41 @@
-<?php echo('<p> bonjour '. $users[$_COOKIE['LOGGED_USER']]['nom'] . ', '. $users[$_COOKIE['LOGGED_USER']]['prenom'] . ' et bienvenu sur le site</p>');?>
-<div class="tableau">
-    <div class="tete_tableau">
-        <div class="element_tete">nom</div>
-        <div class="element_tete">quantité</div>
-        <div class="element_tete">unité</div>
-        <div class="element_tete">prix</div>
-        <div class="element_tete">quantité</div>
-        <div class="element_tete">achat</div>
-</div>
+<?php echo('<p> bonjour '. $_SESSION['FULL_NAME'] . ' et bienvenu sur le site</p>');?>
+
 <?php   
+    $cat_products=category_product_db();
+    echo"<form method='POST' action='panier.php'>";
+    foreach($cat_products as $category){
+        echo ('<h2>'.$category.'</h2>');
+        $products=product_db($category);
 
-foreach($products as $product){
-    echo ("<div class=\"corps_tableau\">");
-    foreach($product as $champ){
-        echo ("<div class=\"element_tableau\">".$champ."</div>");
+        foreach($products as $product){
+            foreach($product as $champ){
+                if($product['id_product']==$champ){
+                    $achat="<input type=\"checkbox\" name=\"achat\"
+                    id=".$champ."/>
+                    <input type=\"number\" name=\"quantity\"
+                    id=\"quantity".$champ."\"
+                    min=\"0\" max=\"".$product['quantity']."\"
+                    step=\"1\"
+                    />";
+                }
+                else{
+                    echo (" ".$champ."");
+                }
+                
+                
+           }
+           echo $achat;
+           echo ("</p>");
+        }
+
     }
-    ?>
-        <div class="element_tableau">
-        <input type ="number" min="1"
-        <?php echo("id=".$product.['name']." ");
-                echo("max=".$product['quantity']." ");
-            ?>
-        />
-    </div>
-    <div class="element_achat">
-        <input type="checkbox" name="achat" 
-        <?php echo("id=".$product."achat");?>/>
-    </div>
-
-    <?php
-    echo("</div>");
-}
+    echo "<input type=\"submit\" value=\"panier\"/>";
+    echo"</form>";
 ?>
 </div>
+<?php
+echo "<div>";
+
+
+echo "</div>";
+?>
