@@ -32,9 +32,11 @@
                 <?php include('includes/nav.php');?>
             </div>
             <div id="right"> 
-                <?php echo"<p>".$co."</p>";?>
-                <?php echo "<p>".$_SESSION['FULL_NAME']."</p>";
-                echo "<p>".$_COOKIE['LOGGED_USER'].$cook."</p>";?>
+                <?php
+                if(isset($co))echo"<p>".$co."</p>";
+                if(isset($_SESSION['FULL_NAME']))echo "<p>".$_SESSION['FULL_NAME']."</p>";
+                if(isset($_COOKIE['LOGGED_USER'])) echo "<p>".$_COOKIE['LOGGED_USER']."".$cook."</p>";
+                ?>
 
             <?php include('vue/vue.php');?>
             </div>

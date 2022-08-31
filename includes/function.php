@@ -107,3 +107,38 @@ function inscription(array $formulaire):array{
     }
     return inscription_db($array_inscription);
 }
+
+function category_product_db():array
+{
+    include('config/mysql.php');
+    $sql_querry='SELECT category FROM products';
+    $cat_statement = $db->prepare($sql_querry);
+    $cat_statement->execute();
+    $cat_products =$cat_statement->fetchAll();
+    $table_cat=[];
+    foreach($cat_products as $category){
+        if(!in_array($category['category'], $table_cat)){
+            $table_cat[]=$category['category'];
+        }
+        
+    }
+    foreach($table_cat as $cat){
+        echo $cat;
+    }
+    
+    return $table_cat;
+}
+
+function product_db($category):array
+{
+    include('config/mysql.php');
+    $sql_querry='SELECT id_product,name, quantity, unit_quantity, price
+                FROM products WHERE category = :category';
+    $product_statement =$db ->prepare($sql_querry);
+    $product_statement->execute(
+        [
+            'category'=>$category,
+        ]
+        );
+    return $product_statement->fetchAll(PDO::FETCH_ASSOC);
+}
