@@ -17,27 +17,16 @@ function connection(array $form){
     return;
 }
 
-//creer le cookie stockant l'id de l'utilisateur, en cours de modification par une session.
-function creer_cookie(){
-    $test="";
+//creer la session stockant l'id de l'utilisateur.
+function creer_session(){
     if (!empty($_POST['email']) && !empty($_POST['mdp'])){
         $formulaire=['email'=> $_POST['email'],'mdp'=> $_POST['mdp']];
         $status_log = connection($formulaire);
         if ($status_log!= null){
-            setcookie(
-                'LOGGED_USER',
-                $status_log['id_user'],
-                [
-                    'expires' => time() + 3000,
-                    'secure' => true,
-                    'httponly' => true,
-                ]
-            );
             $_SESSION['FULL_NAME']=$status_log['full_name'];
+            $_SESSION['ID']=$status_log['id_user'];
             $test="et le status_log était pas nul";
         }
-        return "on est aller creer le cookie".$test.$formulaire['email'];
-
     }
 }
 //verifie la presence d'email en double dans notre base de donnée
@@ -108,6 +97,7 @@ function inscription(array $formulaire):array{
     return inscription_db($array_inscription);
 }
 
+//recupere les differentes catégorie de produits
 function category_product_db():array
 {
     include('config/mysql.php');
@@ -128,6 +118,7 @@ function category_product_db():array
     
     return $table_cat;
 }
+//retourne l'id la plus haute de la table product
 function get_max_id_product():int{
     include('config/mysql.php');
     $sql_querry='SELECT MAX(id_product) FROM products';
@@ -137,7 +128,8 @@ function get_max_id_product():int{
     return $max_id[0];
     
 }
-
+/*retourne les produits de la base de donnée product, soit toute la table ,
+     soit si une catégorie a été spécifié les produits de cette catégorie*/
 function product_db($category):array
 {
     include('config/mysql.php');
@@ -158,7 +150,7 @@ function product_db($category):array
     }
     return $product_statement->fetchAll(PDO::FETCH_ASSOC);
 }
-
+//ajoute un produit a la table panier 
 function add_cart($id,$quantity):bool{
     include('config/mysql.php');
     $sql_querry=('SELECT id_panier FROM panier WHERE id_product= :id_product AND id_user=:id_user');
@@ -166,7 +158,7 @@ function add_cart($id,$quantity):bool{
     $id_check->execute(
         [
             'id_product'=>$id,
-            'id_user' =>$_COOKIE['LOGGED_USER'],
+            'id_user' =>$_SESSION['ID'],
         ]
         );
     $in_cart=$id_check->fetchALL();
@@ -176,7 +168,7 @@ function add_cart($id,$quantity):bool{
         $panier_insert->execute(
             [
                 'id_product' => $id,
-                'id_user' => $_COOKIE['LOGGED_USER'],
+                'id_user' => $_SESSION['ID'],
                 'quantity_cart'=>$quantity,
     
     
@@ -190,7 +182,7 @@ function add_cart($id,$quantity):bool{
         $panier_insert->execute(
             [
                 'id_product' => $id,
-                'id_user' => $_COOKIE['LOGGED_USER'],
+                'id_user' => $_SESSION['ID'],
                 'quantity_cart'=>$quantity,
     
     
@@ -200,17 +192,45 @@ function add_cart($id,$quantity):bool{
     }
     return false;
 }
+
+//recupere tout les produits dans le panier pour l'utilisateur connecter
 function get_panier():array{
     include('config/mysql.php');
     $sql_querry='SELECT p.*, c.quantity_cart FROM panier c INNER JOIN products p ON c.id_product=p.id_product 
-                WHERE c.id_user=:id_user
+                WHERE c.id_user=:id_user 
                 ORDER BY p.category';
     $panier_print=$db->prepare($sql_querry);
     $panier_print->execute(
         [
-            'id_user'=> $_COOKIE['LOGGED_USER'],
+            'id_user'=> $_SESSION['ID'],
         ]
         );
         return $panier_print->fetchAll(PDO::FETCH_ASSOC);
 
+}
+
+//suprimer le panier de l'utilisateur et met a jour la table produits
+// !!! ajouter dans la vue marche un if pour si le produit est en rupture de stock quty==0
+function delete_panier(){
+    include('config/mysql.php');
+    $panier =get_panier();
+    foreach($panier as $produit){
+        $sql_querry='UPDATE products SET quantity= :quantity WHERE id_product=:id_product';
+        $product_update=$db->prepare($sql_querry);
+        $product_update->execute(
+            [
+            'quantity'=>($produit['quantity'] - $produit['quantity_cart']),
+            'id_product'=> $produit['id_product'],
+            ]
+        );
+    }
+    $sql_querry='DELETE FROM panier WHERE id_user=:id_user';
+    $cart_delete=$db->prepare($sql_querry);
+    $cart_delete->execute(
+        [
+            'id_user'=>$_SESSION['ID'],
+        ]
+    );
+    $_SESSION['PANIER']=null;
+    return $panier;
 }

@@ -6,4 +6,4 @@
     <p>votre mot de passe <input type="password" name="mdp"/></p>
     <p>veuillez retapez votre mot de passe <input type="password" name="mdp_confirm"/></p>
     <p>confirmez votre inscription : <input type ="submit" value="inscrit" name="inscrit"/>  </p>
-    </form>
+</form>

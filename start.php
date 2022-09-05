@@ -1,16 +1,15 @@
 <?php
-    session_start();
+    isset($deco)? :session_start();
     //include('config/mysql.php');
     include('includes/variables.php');
     include('includes/function.php');
     // retenir l'email de la personne connectée pendant 1 an
     if(isset($_POST['checkout'])){
-        delete_panier();
+        $panier=delete_panier();
         $_SESSION['panier']==null;
     }
     if(isset($_POST['connection'])){
-        $cook=creer_cookie();
-        $co='ouit';
+        creer_session();
     }
     if(isset($_POST['inscrit'])){
         $verif_form=inscription($_POST);
@@ -36,9 +35,8 @@
             </div>
             <div id="right"> 
                 <?php
-                if(isset($co))echo"<p>".$co."</p>";
                 if(isset($_SESSION['FULL_NAME']))echo "<p>".$_SESSION['FULL_NAME']."</p>";
-                if(isset($_COOKIE['LOGGED_USER'])) echo "<p>".$_COOKIE['LOGGED_USER']."</p>";
+                if(isset($panier))print_r($panier);
                 ?>
 
             <?php include('vue/vue.php');?>
