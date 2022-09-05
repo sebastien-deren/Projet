@@ -1,18 +1,19 @@
 <?php
     isset($deco)? :session_start();
-    //include('config/mysql.php');
     include('includes/variables.php');
     include('includes/function.php');
     // retenir l'email de la personne connectée pendant 1 an
-    if(isset($_POST['checkout'])){
-        $panier=delete_panier();
-        $_SESSION['panier']==null;
+    if(isset($_POST['checkout'])){  
+        if(isset($_SESSION['panier'])){
+            $panier=delete_panier();
+            $_SESSION['panier']==null;
+        }
     }
     if(isset($_POST['connection'])){
         creer_session();
     }
     if(isset($_POST['inscrit'])){
-        $verif_form=inscription($_POST);
+        $verif_form=inscription();
         foreach($verif_form as $verif_champ){
             if($verif_champ ==false){
                 $_POST['inscription']="reinscription"; 
