@@ -1,4 +1,5 @@
 <?php
+echo($_SESSION['ID']);
 $MAX_ID=get_max_id_product();
 for($i=0;$i<=$MAX_ID;$i++){
     if(isset($_POST[$i])){
@@ -8,14 +9,21 @@ for($i=0;$i<=$MAX_ID;$i++){
         add_cart($i,$_POST[$quantity]);
     }
 }
-$_SESSION['panier']=get_panier();
-foreach($_SESSION['panier'] as $product){
+$_SESSION['PANIER']=get_panier();
+?>
+<form method="post" action="start.php">
+<?php
+foreach($_SESSION['PANIER'] as $product){
     echo"<p>";
     foreach($product as $champ){
         echo(" ".$champ." ");
+
     }
+    echo("<input type=\"submit\" value=\"supprimer\" name=\"supprimer\"/>");
+    echo"</p>";
 }
 ?>
-<form action='checkout.php'>
+</form>
+<form method="post" action='start.php'>
 <p><input type="submit" value="checkout" name="checkout"/> </p>
 </form>

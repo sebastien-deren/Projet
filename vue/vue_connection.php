@@ -4,4 +4,4 @@
     <p>votre mot de passe <input type="password" name="mdp"/></p>
     <p><input type ="submit" value="se connecter" name="connection"/> </p>
     <p><input type="submit" value="inscription" name="inscription"/> </p>
-    </form>
+</form>
