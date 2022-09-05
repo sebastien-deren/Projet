@@ -63,11 +63,11 @@ function inscription_db(array $verif_form){
         return $verif_form;
 }
 
-//verifie que le formulaire à été correctement rempli
-function inscription(array $formulaire):array{
+//verifie que le formulaire à été correctement rempli à retravailler ?
+function inscription():array{
+    $formulaire=$_POST;
     $array_inscription=[];
-    if((isset($formulaire['nom']) && isset($formulaire['prenom'])) &&
-         (!empty($_POST['nom']) && !empty($_POST['prenom']))){
+    if((isset($formulaire['nom']) && isset($formulaire['prenom']))){
         $full_name="".strip_tags($formulaire['nom'])." ".strip_tags($formulaire['prenom'])."";
         if(isset($formulaire['mdp']) && isset($formulaire['mdp_confirm']) &&
         ($formulaire['mdp']==$formulaire['mdp_confirm'])){

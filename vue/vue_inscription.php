@@ -7,3 +7,6 @@
     <p>veuillez retapez votre mot de passe <input type="password" name="mdp_confirm"/></p>
     <p>confirmez votre inscription : <input type ="submit" value="inscrit" name="inscrit"/>  </p>
 </form>
+<form method ="post" action="start.php">
+<p>annulez l'inscription <input type ="submit" value="annuler" name="connection"/></p>
+</form>
