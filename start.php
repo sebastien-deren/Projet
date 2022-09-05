@@ -2,7 +2,6 @@
     isset($deco)? :session_start();
     include('includes/variables.php');
     include('includes/function.php');
-    // retenir l'email de la personne connectée pendant 1 an
     if(isset($_POST['checkout'])){  
         if(isset($_SESSION['panier'])){
             $panier=delete_panier();
@@ -35,11 +34,6 @@
                 <?php include('includes/nav.php');?>
             </div>
             <div id="right"> 
-                <?php
-                if(isset($_SESSION['FULL_NAME']))echo "<p>".$_SESSION['FULL_NAME']."</p>";
-                if(isset($panier))print_r($panier);
-                ?>
-
             <?php include('vue/vue.php');?>
             </div>
         </div>

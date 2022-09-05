@@ -112,10 +112,6 @@ function category_product_db():array
         }
         
     }
-    foreach($table_cat as $cat){
-        echo $cat;
-    }
-    
     return $table_cat;
 }
 //retourne l'id la plus haute de la table product
@@ -211,6 +207,7 @@ function get_panier():array{
 
 //suprimer le panier de l'utilisateur et met a jour la table produits
 // !!! ajouter dans la vue marche un if pour si le produit est en rupture de stock quty==0
+//retravailler cette fonction en recursive ? permet de l'integrer pour le cas d'une suprresion d'un item dans le panier?
 function delete_panier(){
     include('config/mysql.php');
     $panier =get_panier();
@@ -233,4 +230,21 @@ function delete_panier(){
     );
     $_SESSION['PANIER']=null;
     return $panier;
+}
+
+function delete_item($id){
+    include("config/mysql.php");
+    $sql_querry='DELETE FROM panier WHERE id_user=:id_user AND id_product=:id_product';
+    $prod_delete = $db->prepare($sql_querry);
+    $prod_delete->execute(
+        [
+            'id_user'=>$_SESSION['ID'],
+            'id_product'=>$id,
+        ]
+        );
+    return;
+}
+
+function affiche_prix(int $prix) :string{
+    return $prix%100==0? intdiv($prix,100)."€": intdiv($prix,100)."€".$prix%100; 
 }

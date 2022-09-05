@@ -3,7 +3,7 @@
 if(!isset($_SESSION['view'])){
     $_SESSION['view']="connection";
 }
-if (isset($_SESSION['ID']) && null !== $_SESSION['ID']){
+if (isset($_SESSION['ID']) && null !==$_SESSION['ID']){
     if(isset($_POST['panier'])){
         $_SESSION['view']="panier";
     }
@@ -22,6 +22,5 @@ else{
     }
 
 }
-echo ($_SESSION['view']);
 include("vue_".$_SESSION['view'].".php");
 ?>
