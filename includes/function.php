@@ -2,6 +2,9 @@
 //gere l'affichage de la page de contenu
 //probablement à deplacer dans un fichier vue avec les autres vue_ pour une meilleure lisibilité
 
+
+
+
 /* fonction traitant de la connection des utilisateurs*/
 function connection(array $form){
     include('config/mysql.php');
@@ -101,7 +104,7 @@ function inscription():array{
 function category_product_db():array
 {
     include('config/mysql.php');
-    $sql_querry='SELECT category FROM products';
+    $sql_querry='SELECT category FROM products ORDER BY category';
     $cat_statement = $db->prepare($sql_querry);
     $cat_statement->execute();
     $cat_products =$cat_statement->fetchAll();
@@ -212,11 +215,13 @@ function delete_panier(){
     include('config/mysql.php');
     $panier =get_panier();
     foreach($panier as $produit){
+        $quantity_cart= $produit['unit_quantity']=='kg' ? $produit['quantity_cart']*1000 : $produit['quantity_cart'];
+        $final_quantity= $produit['quantity'] - $quantity_cart;
         $sql_querry='UPDATE products SET quantity= :quantity WHERE id_product=:id_product';
         $product_update=$db->prepare($sql_querry);
         $product_update->execute(
             [
-            'quantity'=>($produit['quantity'] - $produit['quantity_cart']),
+            'quantity'=>$final_quantity,
             'id_product'=> $produit['id_product'],
             ]
         );
@@ -247,4 +252,11 @@ function delete_item($id){
 
 function affiche_prix(int $prix) :string{
     return $prix%100==0? intdiv($prix,100)."€": intdiv($prix,100)."€".$prix%100; 
+}
+function affiche_poids(int $mass) :string{
+    return $mass%1000==0? intdiv($mass,1000).",": intdiv($mass,1000).",".$mass%1000; 
+}
+function prix_produit(array $product) :float{
+    return $product['unit_quantity']=='kg'? 
+                    ($product['quantity_cart']*$product['price'])/100000 : ($product['quantity_cart']*$product['price'])/100;
 }

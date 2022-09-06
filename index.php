@@ -1,24 +1,8 @@
 <?php
-    isset($deco)? :session_start();
+    session_start();
     include('includes/variables.php');
     include('includes/function.php');
-    if(isset($_POST['checkout'])){  
-        if(isset($_SESSION['panier'])){
-            $panier=delete_panier();
-            $_SESSION['panier']==null;
-        }
-    }
-    if(isset($_POST['connection'])){
-        creer_session();
-    }
-    if(isset($_POST['inscrit'])){
-        $verif_form=inscription();
-        foreach($verif_form as $verif_champ){
-            if($verif_champ ==false){
-                $_POST['inscription']="reinscription"; 
-            }
-        }
-    }
+    include('vue/vue.php');
     ?>
 <!doctype html>
 <html lang="fr">
@@ -34,7 +18,8 @@
                 <?php include('includes/nav.php');?>
             </div>
             <div id="right"> 
-            <?php include('vue/vue.php');?>
+            <?php 
+            include("vue/vue_".$_SESSION['view'].".php");?>
             </div>
         </div>
     </body>
