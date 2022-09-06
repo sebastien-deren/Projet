@@ -19,7 +19,7 @@
             </div>
             <div id="right"> 
             <?php 
-            include("vue/vue_".$_SESSION['view'].".php");?>
+            include("vue/".$_SESSION['view'].".php");?>
             </div>
         </div>
     </body>
