@@ -236,7 +236,7 @@ function delete_panier(){
     $_SESSION['PANIER']=null;
     return $panier;
 }
-
+//supprime un produit particulier du produit d'un utilisateur
 function delete_item($id){
     include("config/mysql.php");
     $sql_querry='DELETE FROM panier WHERE id_user=:id_user AND id_product=:id_product';
@@ -249,14 +249,17 @@ function delete_item($id){
         );
     return;
 }
-
+//gere l'affichage du prix en euro
 function affiche_prix(int $prix) :string{
     return $prix%100==0? intdiv($prix,100)."€": intdiv($prix,100)."€".$prix%100; 
 }
+//gere l'affichage du poids en Kg
 function affiche_poids(int $mass) :string{
     return $mass%1000==0? intdiv($mass,1000).",": intdiv($mass,1000).",".$mass%1000; 
 }
+//gere les decimale d'un produit en kg (solution non implémentée)
 function prix_produit(array $product) :float{
     return $product['unit_quantity']=='kg'? 
                     ($product['quantity_cart']*$product['price'])/100000 : ($product['quantity_cart']*$product['price'])/100;
 }
+?>

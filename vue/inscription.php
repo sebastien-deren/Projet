@@ -1,3 +1,4 @@
+<div class="form_inscription">
 <form method ="post" action="index.php">
     <p> bonjour, merci de vous inscrire sur notre site !</p>
     <p>votre nom. <input type="text" name="nom"/></p>
@@ -10,3 +11,4 @@
 <form method ="post" action="index.php">
 <p>annulez l'inscription <input type ="submit" value="annuler" name="connection"/></p>
 </form>
+</div>

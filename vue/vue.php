@@ -1,4 +1,5 @@
 <?php
+//nous deconecte avant de choisir la vue(si on a choisi de se déconnecter ofc)
 if(isset($_GET['deco']))
 {
     $_SESSION['FULL_NAME']=null;
