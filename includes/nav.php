@@ -1,7 +1,7 @@
 <nav id="menu">
                     <section class="cat_nav">
                     <a href="index.php"><div class="element 1">
-                        <img src="images/accueil.png" alt="maison" class="icon"/>
+                        <!--<img src="images/accueil.png" alt="maison" class="icon"/>-->
                         Home
                     </div></a>
                     <?php
