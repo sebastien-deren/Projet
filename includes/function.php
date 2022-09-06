@@ -2,6 +2,9 @@
 //gere l'affichage de la page de contenu
 //probablement à deplacer dans un fichier vue avec les autres vue_ pour une meilleure lisibilité
 
+
+
+
 /* fonction traitant de la connection des utilisateurs*/
 function connection(array $form){
     include('config/mysql.php');
@@ -101,7 +104,7 @@ function inscription():array{
 function category_product_db():array
 {
     include('config/mysql.php');
-    $sql_querry='SELECT category FROM products';
+    $sql_querry='SELECT category FROM products ORDER BY category';
     $cat_statement = $db->prepare($sql_querry);
     $cat_statement->execute();
     $cat_products =$cat_statement->fetchAll();
@@ -112,10 +115,6 @@ function category_product_db():array
         }
         
     }
-    foreach($table_cat as $cat){
-        echo $cat;
-    }
-    
     return $table_cat;
 }
 //retourne l'id la plus haute de la table product
@@ -211,15 +210,18 @@ function get_panier():array{
 
 //suprimer le panier de l'utilisateur et met a jour la table produits
 // !!! ajouter dans la vue marche un if pour si le produit est en rupture de stock quty==0
+//retravailler cette fonction en recursive ? permet de l'integrer pour le cas d'une suprresion d'un item dans le panier?
 function delete_panier(){
     include('config/mysql.php');
     $panier =get_panier();
     foreach($panier as $produit){
+        $quantity_cart= $produit['unit_quantity']=='kg' ? $produit['quantity_cart']*1000 : $produit['quantity_cart'];
+        $final_quantity= $produit['quantity'] - $quantity_cart;
         $sql_querry='UPDATE products SET quantity= :quantity WHERE id_product=:id_product';
         $product_update=$db->prepare($sql_querry);
         $product_update->execute(
             [
-            'quantity'=>($produit['quantity'] - $produit['quantity_cart']),
+            'quantity'=>$final_quantity,
             'id_product'=> $produit['id_product'],
             ]
         );
@@ -233,4 +235,28 @@ function delete_panier(){
     );
     $_SESSION['PANIER']=null;
     return $panier;
+}
+
+function delete_item($id){
+    include("config/mysql.php");
+    $sql_querry='DELETE FROM panier WHERE id_user=:id_user AND id_product=:id_product';
+    $prod_delete = $db->prepare($sql_querry);
+    $prod_delete->execute(
+        [
+            'id_user'=>$_SESSION['ID'],
+            'id_product'=>$id,
+        ]
+        );
+    return;
+}
+
+function affiche_prix(int $prix) :string{
+    return $prix%100==0? intdiv($prix,100)."€": intdiv($prix,100)."€".$prix%100; 
+}
+function affiche_poids(int $mass) :string{
+    return $mass%1000==0? intdiv($mass,1000).",": intdiv($mass,1000).",".$mass%1000; 
+}
+function prix_produit(array $product) :float{
+    return $product['unit_quantity']=='kg'? 
+                    ($product['quantity_cart']*$product['price'])/100000 : ($product['quantity_cart']*$product['price'])/100;
 }

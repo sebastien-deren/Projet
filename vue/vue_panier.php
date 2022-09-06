@@ -1,29 +1,40 @@
 <?php
-echo($_SESSION['ID']);
 $MAX_ID=get_max_id_product();
 for($i=0;$i<=$MAX_ID;$i++){
     if(isset($_POST[$i])){
         $id=$_POST[$i];
         $quantity="quantity".$i;
-        echo"<p>".$_POST[$quantity]."</p>";
         add_cart($i,$_POST[$quantity]);
     }
 }
+if(isset($_POST['supprimer'])){
+    delete_item($_POST['id_product']);
+
+}
 $_SESSION['PANIER']=get_panier();
 ?>
-<form method="post" action="start.php">
-<?php
-foreach($_SESSION['PANIER'] as $product){
-    echo"<p>";
-    foreach($product as $champ){
-        echo(" ".$champ." ");
 
-    }
-    echo("<input type=\"submit\" value=\"supprimer\" name=\"supprimer\"/>");
-    echo"</p>";
+<?php
+$prix_total=0;
+foreach($_SESSION['PANIER'] as $product){
+    echo"<form method=\"post\" action=\"index.php\">";
+    $prix_produit=$product['quantity_cart']*$product['price'];
+    //valable si la quantité de kg n'est plus à multiplier par 1000 prix_produit($product)
+    $prix_total = $prix_total+$prix_produit;
+    echo("<h3>".$product['name']."</h3>");
+    echo("<p> quantité commandé: ".$product['quantity_cart']." ".$product['unit_quantity']." prix: ".affiche_prix($product['price']).
+        " / ".$product['unit_quantity']."");
+    echo(" prix commandé : ".affiche_prix($prix_produit)."");   
+    ?>
+<input type="hidden" value=<?php echo($product['id_product']);?> name="id_product"/> 
+<input type="submit" value="supprimer" name="supprimer"/>
+<?php
+    
+    echo"</form></p>";
 }
 ?>
-</form>
-<form method="post" action='start.php'>
+<h2> prix total: <?=affiche_prix($prix_total)?></h2>
+
+<form method="post" action='index.php'>
 <p><input type="submit" value="checkout" name="checkout"/> </p>
 </form>
