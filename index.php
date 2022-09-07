@@ -1,7 +1,9 @@
 <?php
     session_start();
     include('includes/variables.php');
+    include('includes/call_db.php');
     include('includes/function.php');
+    include('includes/formulaire.php');
     include('vue/vue.php');
     ?>
 <!doctype html>

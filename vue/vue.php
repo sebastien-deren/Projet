@@ -1,31 +1,5 @@
 <?php
-//nous deconecte avant de choisir la vue(si on a choisi de se déconnecter ofc)
-if(isset($_GET['deco']))
-{
-    $_SESSION['FULL_NAME']=null;
-    $_SESSION['ID']=null;
-    $_SESSION['PANIER']=null;
-}
-//vide le panier lorsque qu'on checkout son panier
-if(isset($_POST['checkout'])){  
-    if(isset($_SESSION['PANIER'])){
-        $panier=delete_panier();
-        $_SESSION['PANIER']==null;
-    }
-}
-//creer une session quand le formulaire de connection est rempli
-if(isset($_POST['connection'])){
-    creer_session();
-}
-// gère l'inscription d'une personne
-if(isset($_POST['inscrit'])){
-    $verif_form=inscription();
-    foreach($verif_form as $verif_champ){
-        if($verif_champ ==false){
-            $_POST['inscription']="reinscription"; 
-        }
-    }
-}
+/*ce fichier gère l'affichage des différentes vues*/
 
 
 //selectionner la vue
