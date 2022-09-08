@@ -74,7 +74,7 @@ function category_product_db():array
     return $table_cat;
 }
 //retourne l'id la plus haute d'une table
-function get_max_id_products():int{
+function get_max_id_products(){
     include('config/mysql.php');
     $sql_querry='SELECT MAX(id_product) FROM products';
     $max_statement=$db->prepare($sql_querry);

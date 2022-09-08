@@ -1,0 +1,33 @@
+version: '3'
+services:
+  php-apache:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports: 
+      - 127.0.0.1:80:80
+    volumes:
+      - ../Projet:/var/www/html/
+    depends_on:
+      - mysql
+  mysql: 
+    container_name: mysql
+    image: mysql:latest
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'user'
+      MYSQL_DATABASE: 'test'
+    ports:
+      - 127.0.0.1:9906:3306
+  adminer:
+    image: adminer:latest
+    ports:
+     - "127.0.0.1:8080:8080"
+    restart: always
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+      ADMINER_DESIGN: mancave
