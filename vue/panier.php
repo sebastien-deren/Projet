@@ -19,7 +19,9 @@ if(empty($panier)){
 }
 else{
     $prix_total=0;
+
     foreach($panier as $product){
+
         echo"<form method=\"post\" action=\"index.php\">";
         $prix_produit=$product['quantity_cart']*$product['price'];
         //valable si la quantité de kg n'est plus à multiplier par 1000 prix_produit($product)

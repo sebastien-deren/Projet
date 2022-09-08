@@ -1,5 +1,7 @@
 <?php
+
 /*ce fichier gère l'affichage des différentes vues*/
+
 
 
 //selectionner la vue

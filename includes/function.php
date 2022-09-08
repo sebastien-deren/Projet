@@ -93,6 +93,7 @@ function command_panier(){
     if(is_null($panier)){
         return null;
     }
+
     //get_num_commandd_db return max(n_command) if it's null we start at 0 else we increment it 
     $n_command = get_num_command_db();
     $n_command = is_null($n_command)? 0 : ++$n_command;
@@ -103,6 +104,7 @@ function command_panier(){
     }
     return $n_command;
 }
+
 
 //gere l'affichage du prix en euro
 function affiche_prix(int $prix) :string{
