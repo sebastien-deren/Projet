@@ -1,9 +1,9 @@
 <?php
 try{
         $db =new PDO(
-        'mysql:host=127.0.0.1;dbname=test;charset=utf8',
-        'root',
-        "",
+        'mysql:host=mysql:3306;dbname=test;charset=utf8',
+        'user',
+        'user',
         );
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
