@@ -1,5 +1,5 @@
 <?php
-$MAX_ID=get_max_id_product();
+$MAX_ID=get_max_id_products();
 for($i=0;$i<=$MAX_ID;$i++){
     if(isset($_POST[$i])){
         $id=$_POST[$i];
@@ -11,16 +11,17 @@ if(isset($_POST['supprimer'])){
     delete_item($_POST['id_product']);
 
 }
-$_SESSION['PANIER']=get_panier();
-?>
+$panier=get_panier_db();
 
-<?php
-if(null==$_SESSION['PANIER']){
+
+if(empty($panier)){
     echo("<h2>votre panier est vide</h2>");
 }
 else{
     $prix_total=0;
-    foreach($_SESSION['PANIER'] as $product){
+
+    foreach($panier as $product){
+
         echo"<form method=\"post\" action=\"index.php\">";
         $prix_produit=$product['quantity_cart']*$product['price'];
         //valable si la quantité de kg n'est plus à multiplier par 1000 prix_produit($product)

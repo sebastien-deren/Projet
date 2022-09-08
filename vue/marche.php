@@ -8,6 +8,9 @@
         $products=product_db($category);
 
         foreach($products as $product){
+            $in_cart =check_in_panier_db($product['id_product']);
+            print_r($in_cart);
+            $value= empty($in_cart) ? 0 : $in_cart[0]['quantity_cart'];
             $quantity = $product['unit_quantity']=="kg"? 
             affiche_poids($product['quantity']): $product['quantity'];
             $quantity_max = $product['unit_quantity']=="kg"?
@@ -17,7 +20,7 @@
             $number="<input type=\"number\" name=\"quantity".$product['id_product']."\"
             min=\"0\" max=\"".$quantity_max."\"
             step=\"1\"
-            value=\"0\"/>";
+            value=\"".$value."\"/>";
 
             ?>
             <!-- !!!DEMAIN changer les <p> par des <div class produits>
