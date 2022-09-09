@@ -8,7 +8,7 @@
         $products=product_db($category);
 
         foreach($products as $product){
-            $in_cart =check_in_panier_db($product['id_product']);
+            $in_cart =check_in_cart_db($product['id_product']);
             print_r($in_cart);
             $value= empty($in_cart) ? 0 : $in_cart[0]['quantity_cart'];
             $quantity = $product['unit_quantity']=="kg"? 
@@ -36,7 +36,7 @@
             </div>
             <?php
         }
-        echo "<input type=\"submit\" value=\"panier\" name=\"panier\"/>";
+        echo "<input type=\"submit\" value=\"cart\" name=\"cart\"/>";
         echo("</article>");
 
     }

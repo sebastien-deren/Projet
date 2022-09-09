@@ -72,32 +72,32 @@ function product_db($category):array
     }
     return $product_statement->fetchAll(PDO::FETCH_ASSOC);
 }
-//ajoute un produit a la table panier 
+//ajoute un produit a la table cart 
 function add_cart($id,$quantity):bool{
-    $in_cart=check_in_panier_db($id);
+    $in_cart=check_in_cart_db($id);
     if(empty($in_cart)){
-        add_in_panier_db($id,$quantity);
+        add_in_cart_db($id,$quantity);
         return 1;
     }
     else{
-        update_in_panier_db($id,$quantity);
+        update_in_cart_db($id,$quantity);
         return true;
     }
     return false;
 }
-//suprimer le panier de l'utilisateur et met a jour la table produits
+//suprimer le cart de l'utilisateur et met a jour la table produits
 // !!! ajouter dans la vue marche un if pour si le produit est en rupture de stock quty==0
-//retravailler cette fonction en recursive ? permet de l'integrer pour le cas d'une suprresion d'un item dans le panier?
-function command_panier(){
-    $panier =get_panier_db();
-    if(is_null($panier)){
+//retravailler cette fonction en recursive ? permet de l'integrer pour le cas d'une suprresion d'un item dans le cart?
+function command_cart(){
+    $cart =get_cart_db();
+    if(is_null($cart)){
         return null;
     }
 
     //get_num_commandd_db return max(n_command) if it's null we start at 0 else we increment it 
     $n_command = get_num_command_db();
     $n_command = is_null($n_command)? 0 : ++$n_command;
-    foreach($panier as $product){
+    foreach($cart as $product){
         //ajoute un à un le produit à la commande.
         $check_update_products = update_product_db($product);
         $check_command = command_product_db($product,$n_command);

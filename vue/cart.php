@@ -11,16 +11,16 @@ if(isset($_POST['supprimer'])){
     delete_item($_POST['id_product']);
 
 }
-$panier=get_panier_db();
+$cart=get_cart_db();
 
 
-if(empty($panier)){
+if(empty($cart)){
     echo("<h2>votre panier est vide</h2>");
 }
 else{
     $prix_total=0;
 
-    foreach($panier as $product){
+    foreach($cart as $product){
 
         echo"<form method=\"post\" action=\"index.php\">";
         $prix_produit=$product['quantity_cart']*$product['price'];
@@ -31,7 +31,7 @@ else{
             " / ".$product['unit_quantity']."");
         echo(" prix commandé : ".affiche_prix($prix_produit)."");   
         ?>
-    <input type="hidden" value=<?php echo($product['id_product']);?> name="id_product"/> 
+    <input type="hidden" value=<?=$product['id_product']?> name="id_product"/> 
     <input type="submit" value="supprimer" name="supprimer"/>
     <?php
         

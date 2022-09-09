@@ -4,7 +4,7 @@
     include('includes/call_db.php');
     include('includes/function.php');
     include('includes/formulaire.php');
-    include('vue/vue.php');
+    include('includes/vue.php');
     ?>
 <!doctype html>
 <html lang="fr">
