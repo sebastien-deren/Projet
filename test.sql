@@ -47,21 +47,21 @@ INSERT INTO `commands` (`id`, `n_command`, `id_users`, `product_text`, `date`) V
 -- --------------------------------------------------------
 
 --
--- Structure de la table `panier`
+-- Structure de la table `cart`
 --
 
-CREATE TABLE `panier` (
-  `id_panier` int(11) NOT NULL,
+CREATE TABLE `cart` (
+  `id_cart` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `quantity_cart` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `panier`
+-- Déchargement des données de la table `cart`
 --
 
-INSERT INTO `panier` (`id_panier`, `id_product`, `id_user`, `quantity_cart`) VALUES
+INSERT INTO `cart` (`id_cart`, `id_product`, `id_user`, `quantity_cart`) VALUES
 (25, 3, 15, 5),
 (26, 10, 15, 6),
 (65, 3, 11, 2);
@@ -129,10 +129,10 @@ ALTER TABLE `commands`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `panier`
+-- Index pour la table `cart`
 --
-ALTER TABLE `panier`
-  ADD PRIMARY KEY (`id_panier`);
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id_cart`);
 
 --
 -- Index pour la table `products`
@@ -157,10 +157,10 @@ ALTER TABLE `commands`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT pour la table `panier`
+-- AUTO_INCREMENT pour la table `cart`
 --
-ALTER TABLE `panier`
-  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+ALTER TABLE `cart`
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT pour la table `products`

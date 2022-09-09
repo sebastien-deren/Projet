@@ -1,6 +1,6 @@
 <nav id="menu">
                     <section class="cat_nav">
-                    <a href="index.php"><div class="element 1">
+                    <a href="index.php?view=default"><div class="element 1">
                         <!--<img src="images/accueil.png" alt="maison" class="icon"/>-->
                         Home
                     </div></a>
@@ -11,7 +11,7 @@
                     <a href="index.php?view=marche"><div class="element 2">
                         Marché
                     </div></a>
-                    <a href="index.php?view=panier"><div class="element 3">
+                    <a href="index.php?view=cart"><div class="element 3">
                         Panier
                     </div></a>
                     <a href="index.php?deco"><div class="element 4">

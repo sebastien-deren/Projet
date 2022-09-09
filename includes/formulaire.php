@@ -8,10 +8,10 @@ if(isset($_GET['deco']))
     $_SESSION['FULL_NAME']=null;
     $_SESSION['ID']=null;
 }
-//vide le panier lorsque qu'on checkout son panier
+//vide le cart lorsque qu'on checkout son cart
 if(isset($_POST['checkout'])){  
-        $num_command=command_panier();
-        delete_panier_db();
+        $num_command=command_cart();
+        delete_cart_db();
 }
 //creer une session quand le formulaire de connection est rempli
 if(isset($_POST['connection'])){
@@ -27,7 +27,7 @@ if(isset($_POST['inscrit'])){
     }
     $verif_inscription=  isset($_POST['inscription'])?false:true;
 }
-//gère l'ajout d'item au panier
+//gère l'ajout d'item au cart
 //modifier afin de supprimer la case a cocher (BAD UI)
 $MAX_ID=get_max_id_products();
 for($i=0;$i<=$MAX_ID;$i++){
@@ -37,9 +37,9 @@ for($i=0;$i<=$MAX_ID;$i++){
         add_cart($i,$_POST[$quantity]);
     }
 }
-//gère la supression d'item du panier
+//gère la supression d'item du cart
 if(isset($_POST['supprimer'])){
-    delete_item_in_panier_db($_POST['id_product']);
+    delete_item_in_cart_db($_POST['id_product']);
 
 }
 
