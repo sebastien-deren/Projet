@@ -35,6 +35,19 @@ function check_in_cart_db($id){
         return $id_check->fetchALL();
 
 }
+function get_number_in_cart_db(){
+    include('config/mysql.php');
+    $sql_querry=('SELECT COUNT(*) FROM cart WHERE id_user=:id_user');
+    $count=$db->prepare($sql_querry);
+    $count->execute(
+        [
+        'id_user'=>$_SESSION['ID'],
+        ]
+        );
+    $nb_item= $count->fetch();    
+    return $nb_item[0];
+
+}
 function add_in_cart_db(int $id,int $quantity){
     include('config/mysql.php');
     $sql_querry='INSERT INTO cart(id_product, id_user,quantity_cart) VALUES(:id_product,:id_user,:quantity_cart)';

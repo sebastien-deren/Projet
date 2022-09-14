@@ -28,7 +28,6 @@ if(isset($_POST['inscrit'])){
     $verif_inscription=  isset($_POST['inscription'])?false:true;
 }
 //gère l'ajout d'item au cart
-//modifier afin de supprimer la case a cocher (BAD UI)
 $MAX_ID=get_max_id_products();
 for($i=0;$i<=$MAX_ID;$i++){
     if(isset($_POST["product".$i])){
