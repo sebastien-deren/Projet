@@ -1,40 +1,5 @@
 
 
-.tableau
-{
-    margin-left: 2vh;
-    margin-right: 5vh;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: 1px solid #000;
-    align-items: stretch;
-}
-.tete_tableau, .corps_tableau{
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-}
-
-.element_tete, .element_tableau, .element_achat {
-    flex: 1;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    text-align: left;
-    align-items: center;
-    padding: 0.7vh;
-}
-.element_achat{
-    text-align: center;
-}
-
-.element_tete{
-    padding-bottom: 1vh;
-    font-weight: bold;
-}
-
 a{
     text-decoration: none;
     color: #666;
@@ -47,40 +12,26 @@ a:visited{
 body{
     margin: 0;
     background-color: rgb(114, 90, 128);
-    overflow: auto;
     color: #888;
 }
     #left{
-        flex: 1;
+        flex: auto;
+        position:sticky;
+        top: 0px;
         background: rgb(36, 36, 36);
-        max-width: 20vh;
+        max-height: 20vh;
+        width:100vw;
+        display: flex;
+        flex-direction: row-reverse;
          }
-        #tete
-        {
-
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 10%;
-            overflow: auto;
-            text-align: left;
-
-
-
-        }
-            #photoID{
-
-                margin-left: 2em;
-                float: left;
-            }
             #presentation{
+
                 text-align: right;
                 margin-right: 2em;
             }
             #presentation h1
             {
-                font-size: 1.6em;
+                font-size: 1.7em;
                 margin-bottom: 0.1em;
                 padding-bottom: 0em;
             }
@@ -93,33 +44,27 @@ body{
             display: flex;
             flex-direction: column;
             text-align: left;
+            display: flex;
+            flex:auto;
          }
             #menu a{
                 color: rgb(211, 211, 211);
                 text-decoration: none;            
             }
-
-            #menu .element,h2{
-                padding-top: 7%;
-                padding-bottom: 7%;
-                padding-right: 10%;
-                padding-left:10%; 
-                font-size: 1.6em;
+            .cat_nav{
                 display: flex;
-                justify-content: space-between;
+                flex-direction: row;
+                border: 3px dotted black;
+                flex:1;
             }
-            #menu .element:hover{
+            .cat_nav a{
+                flex:auto;
+                border: 3px solid black;
+                text-align: center;
+            }
+            #menu .cat_nav a:hover{
                 background-color: black;
             }
-            #nav_int:last-child{
-                border-bottom: 1px solid white;
-            }
-        .icon{
-            width: 1em;
-            height: 1em;
-            text-align: left ;
-
-        }
 
         #pied{
             display:flex;
@@ -127,38 +72,29 @@ body{
             justify-content: space-between;
 
         }
-
-
-
-
-
     #right{
-        flex:4;
         background: gainsboro;
-        overflow: auto;
     }
-        #corps_texte{
-            display: flex;
-            height:100vh;
-        }
 
 article{
     min-height:80vh ;
+    width: 100vw;
     display: flex;
+    overflow:auto;
+    flex-wrap: wrap;
     flex-direction: column;
 
 
 }
 /*article d'acceuil*/
-    #intro
-    {
-      height: 85vh;
-      background-image: url();
-      background-image: linear-gradient(to bottom, rgba(255,128,255,0.5), rgba(0,0,128,0.5)), url("../images/bg2.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      /*background-image: url(../images/pic07.jpg)*/ ;
-      /*color: white;*/
+/***
+*    #intro
+ *   {
+  *    height: 85vh;
+   *   background-image: url();
+    *  background-image: linear-gradient(to bottom, rgba(255,128,255,0.5), rgba(0,0,128,0.5)), url("../images/bg2.jpg");
+     * background-size: cover;
+      *background-repeat: no-repeat;
       text-align: center;
       color: #fff;
       align-items: center;
@@ -192,7 +128,7 @@ article{
     #test a{
         font-size: 1.1em;
     }
-    /* page de projet/portfolio */
+    ****** page de projet/portfolio ******
     #projets
     {
         display: flex;
@@ -217,4 +153,4 @@ article{
         background-color: #fff;
        border:black solid 1px;
        border-radius: 5px;
-    }
+    }*/
