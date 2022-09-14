@@ -14,11 +14,11 @@
         <title>Marché de pro </title>
     </head>
     <body id="page">
-        <div id="left">
+        <div id="up">
             <?php include('includes/header.php'); ?>
             <?php include('includes/nav.php');?>
         </div>
-        <div id="right"> 
+        <div id="down"> 
         <?php 
         include("vue/".$_SESSION['view'].".php");?>
         </div>

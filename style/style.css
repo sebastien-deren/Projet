@@ -14,13 +14,14 @@ body{
     background-color: rgb(114, 90, 128);
     color: #888;
 }
-    #left{
-        flex: auto;
-        position:sticky;
-        top: 0px;
+    #up{
+        position: sticky;
+        top:0px;
+        width: 100vw;
         background: rgb(36, 36, 36);
+    }
+    #tete{
         max-height: 20vh;
-        width:100vw;
         display: flex;
         flex-direction: row-reverse;
          }
@@ -31,7 +32,7 @@ body{
             }
             #presentation h1
             {
-                font-size: 1.7em;
+                font-size: 1em;
                 margin-bottom: 0.1em;
                 padding-bottom: 0em;
             }
@@ -58,12 +59,21 @@ body{
                 flex:1;
             }
             .cat_nav a{
+                display: flex;
+                color:white;
                 flex:auto;
                 border: 3px solid black;
                 text-align: center;
             }
             #menu .cat_nav a:hover{
                 background-color: black;
+            }
+            .cat_nav .element{
+                display: flex;
+                flex:auto;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
             }
 
         #pied{
@@ -72,8 +82,11 @@ body{
             justify-content: space-between;
 
         }
-    #right{
+    #down{
         background: gainsboro;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
 article{
