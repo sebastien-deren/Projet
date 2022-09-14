@@ -1,0 +1,42 @@
+body{margin: 0;
+    background-color: rgb(114, 90, 128);
+    color: #888;
+    display: flex;
+    flex-direction: column;
+
+}
+#left /*deviendra up*/{
+    position: sticky ;
+    top: 0px;
+    width: 100vw;
+    background-color: aliceblue;
+    flex-direction: row;
+    display: flex;
+    max-height: 20vh;
+}
+#menu{
+    flex:auto;
+    flex-direction: column;
+    display: flex;
+}
+.cat_nav{
+    display: flex;
+    flex-direction: row;
+    background-color: blue;
+    border: 3px dotted black;
+    flex:1;
+}
+.cat_nav a{
+    flex:auto;
+    border: 3px solid black;
+    background-color: red;
+}
+#right{
+    background-color: gainsboro;
+    min-height:100vh;
+
+}
+   #corps_texte{
+        /*width:100vw;*/
+        min-height:80vh;
+    }
