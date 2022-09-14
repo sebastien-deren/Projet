@@ -16,6 +16,16 @@
 
     <nav id="menu">
         <section class="cat_nav">
+        <?php
+        if(isset($_SESSION['ID'])){
+            
+        ?>
+        <a href="index.php?view=marche"><div class="element">
+            Marché
+        </div></a>
+        <?php
+        }
+        ?>
         <a href="index.php?view=default"><div class="element">
             <!--<img src="images/accueil.png" alt="maison" class="icon"/>-->
             Home
@@ -24,10 +34,7 @@
         if(isset($_SESSION['ID'])){
             $nombre_produit=get_number_in_cart_db();
         ?>
-        
-        <a href="index.php?view=marche"><div class="element">
-            Marché
-        </div></a>
+
         <a href="index.php?view=cart"><div class="element">
             Panier <?= $nombre_produit==0 ? "": "(".$nombre_produit.")"?>
         </div></a>
