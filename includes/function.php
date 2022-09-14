@@ -74,10 +74,16 @@ function product_db($category):array
 }
 //ajoute un produit a la table cart 
 function add_cart($id,$quantity):bool{
+
+    $in_cart=check_in_cart_db($id);
     if(0==$quantity){
+        if(!empty($in_cart))
+        {
+            delete_item_in_cart_db($id);
+            return true;
+        }
         return false;
     }
-    $in_cart=check_in_cart_db($id);
     if(empty($in_cart)){
         add_in_cart_db($id,$quantity);
         return 1;
