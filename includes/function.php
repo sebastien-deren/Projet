@@ -74,6 +74,9 @@ function product_db($category):array
 }
 //ajoute un produit a la table cart 
 function add_cart($id,$quantity):bool{
+    if(0==$quantity){
+        return false;
+    }
     $in_cart=check_in_cart_db($id);
     if(empty($in_cart)){
         add_in_cart_db($id,$quantity);

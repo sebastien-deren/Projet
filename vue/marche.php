@@ -1,6 +1,7 @@
-<
+<div class=lien><a href="index.php?view=cart"> acceder au panier</a></div>
 <?php   
     $cat_products=category_product_db();
+
     echo"<form method='POST' action='index.php'>";
     foreach($cat_products as $category){
         echo("<article id=\"".$category."\">");
@@ -9,14 +10,13 @@
 
         foreach($products as $product){
             $in_cart =check_in_cart_db($product['id_product']);
-            print_r($in_cart);
             $value= empty($in_cart) ? 0 : $in_cart[0]['quantity_cart'];
             $quantity = $product['unit_quantity']=="kg"? 
             affiche_poids($product['quantity']): $product['quantity'];
             $quantity_max = $product['unit_quantity']=="kg"?
             round(intdiv($product['quantity'],1000)):$product['quantity'];
             $class = $quantity_max<=0?"rupture":"achat";
-            $checkbox="<input type=\"checkbox\" name=\"".$product['id_product']."\"/>";
+            $submit="<input type=\"submit\" name=\"product".$product['id_product']."\" value=\"ajouter au panier\"/>";
             $number="<input type=\"number\" name=\"quantity".$product['id_product']."\"
             min=\"0\" max=\"".$quantity_max."\"
             step=\"1\"
@@ -31,12 +31,12 @@
                     <b><?=$product['name']?> </b> <span> <?=$quantity?> <?=$product['unit_quantity']?></span> 
                     <span> <?=affiche_prix($product['price'])?>/<?=$product['unit_quantity']?></span>
                     <span> <?=$number?> <?=$product['unit_quantity']?> </span>
-                    <span>commandez: <?= $checkbox?> </span>
+                    <span><?=$submit?> </span>
                 </p>
             </div>
             <?php
         }
-        echo "<input type=\"submit\" value=\"cart\" name=\"cart\"/>";
+        echo "<input type=\"submit\" value=\"ajouter tout au panier.\" name=\"cart\"/>";
         echo("</article>");
 
     }
