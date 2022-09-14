@@ -31,10 +31,8 @@ if(isset($_POST['inscrit'])){
 //modifier afin de supprimer la case a cocher (BAD UI)
 $MAX_ID=get_max_id_products();
 for($i=0;$i<=$MAX_ID;$i++){
-    if(isset($_POST[$i])){
-        $id=$_POST[$i];
-        $quantity="quantity".$i;
-        add_cart($i,$_POST[$quantity]);
+    if(isset($_POST["product".$i])){
+        add_cart($i,$_POST["quantity".$i]);
     }
 }
 //gère la supression d'item du cart

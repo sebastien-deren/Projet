@@ -11,29 +11,13 @@
                     <a href="index.php?view=marche"><div class="element 2">
                         Marché
                     </div></a>
-                    <a href="index.php?view=cart"><div class="element 3">
-                        Panier
-                    </div></a>
-                    <a href="index.php?deco"><div class="element 4">
-                        Deconection
-                    </div></a>
                     <?php
-                    }
-                    else{
-                    ?>
-                    <a href="index.php?view=connection"><div class="element 2">
-                        Connection
-                    </div></a>
-                    <a href="index.php?view=inscription"><div class="element 3">
-                        Inscription
-                    </div></a>
-                    <?php
-                    }
+                    
                     /*si nous sommes dans la vue marché on va afficher dans la navigation 
                     les differentes catégories de produits*/
                         if($_SESSION['view']=='marche'){
                             ?>
-                            <section class="cat_nav">
+                            <section class="cat_subnav">
                             <?php
                             $categories=category_product_db();
                             $i=0;
@@ -48,5 +32,30 @@
                             }
                         }
                         ?>
+                    <a href="index.php?view=cart"><div class="element 3">
+                        Panier
+                    </div></a>
+                    <?php if($_SESSION['view']=='default'){
+                        ?>
+                            <a href="index.php?deco"><div class="element 4">
+                            Deconection
+                            </div></a>
+                    <?php
+                    }?>
+
+                    <?php
+                    }
+                    else{
+                    ?>
+                    <a href="index.php?view=connection"><div class="element 2">
+                        Connection
+                    </div></a>
+                    <a href="index.php?view=inscription"><div class="element 3">
+                        Inscription
+                    </div></a>
+                    <?php
+                    }
+                    ?>
+
                 </section>
                 </nav>
