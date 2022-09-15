@@ -1,6 +1,6 @@
 
 
-.tableau
+/*.tableau
 {
     margin-left: 2vh;
     margin-right: 5vh;
@@ -16,7 +16,7 @@
     flex-direction: row;
     justify-content: space-between;
 
-}
+}*/
 
 .element_tete, .element_tableau, .element_achat {
     flex: 1;
