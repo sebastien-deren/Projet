@@ -1,5 +1,28 @@
+<div id="cat">
+        <h2> Catégories</h2>
+        
+        <nav>
+        <?php
+        $categories=category_product_db();
+        $i=0;
+        foreach($categories as $category){
+        ?>
+        <a href="#<?=$category?>">
+        <div class="element">
+            <?=$category?>
+        </div></a>
+        
+        <?php
+            $i++;
+        }
+        ?>
+    </nav>
+    <div class=lien><a href="index.php?view=cart"> acceder au panier</a></div>
+</div>
+    
+
 <div class="marche">
-<div class=lien><a href="index.php?view=cart"> acceder au panier</a></div>
+
 <?php   
     $cat_products=category_product_db();
 
@@ -13,11 +36,12 @@
             $in_cart =check_in_cart_db($product['id_product']);
             $value= empty($in_cart) ? 0 : $in_cart[0]['quantity_cart'];
             $quantity = $product['unit_quantity']=="kg"? 
-            affiche_poids($product['quantity']): $product['quantity'];
+                        affiche_poids($product['quantity']): $product['quantity'];
             $quantity_max = $product['unit_quantity']=="kg"?
-            round(intdiv($product['quantity'],1000)):$product['quantity'];
+                        round(intdiv($product['quantity'],1000)):$product['quantity'];
             $class = $quantity_max<=0?"rupture":"achat";
-            $submit="<input class=\"submit\" type=\"submit\" name=\"product".$product['id_product']."\" value=\"ajouter au panier\"/>";
+            $value_submit = $value==0 ? "ajouter au panier" : "modifier la quantité"; 
+            $submit="<input class=\"submit\" type=\"submit\" name=\"product".$product['id_product']."\" value=\"".$value_submit."\"/>";
             $number="<input class=\"number\" type=\"number\" name=\"quantity".$product['id_product']."\"
             min=\"0\" max=\"".$quantity_max."\"
             step=\"1\"
@@ -28,11 +52,26 @@
                 les <div> par des des <div class champ> afin de construire le tableau en css
                 à voir possibilité de td /tr   -->
             <div class="<?=$class?>">
-                <div><?=$product['name']?> </div> <div> <?=$quantity?> <?=$product['unit_quantity']?></div>
-                <div><img src="images/placeholder.jpg" alt="enveloppe" class="imgproduct"/></div> 
-                <div> <?=affiche_prix($product['price'])?>/<?=$product['unit_quantity']?></div>
-                <div> <?=$number?> <?=$product['unit_quantity']?> </div>
-                <div><?=$submit?> </div>
+                <div class="nom"><?=$product['name']?> </div>
+                <div class ="info">
+                    <?php if($class=="rupture")
+                    {
+                    ?>
+                        <div>Produit en rupture de stock</div>
+                    <?php
+                    }
+                    else
+                    {
+                    ?>
+                    
+                        <div> <?=$quantity?> <?=$product['unit_quantity']?></div>
+                        <div> <?=affiche_prix($product['price'])?>/<?=$product['unit_quantity']?></div>
+                        <div> <?=$number?> <?=$product['unit_quantity']?> </div>
+                        <div><?=$submit?> </div>
+                    <?php
+                    }
+                    ?>
+                </div>
             </div>
             <?php
         }
