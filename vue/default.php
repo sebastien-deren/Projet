@@ -14,6 +14,8 @@
         $command =get_command($n_command);
         $n_command--;
         ?>
+        <section class="command">
+        <article>
         <h2>dernière commande! effectué le <?=$command[0]['date']?></h2>
         <?php
 
@@ -25,17 +27,23 @@
 
             }
         ?> 
+        </article>
+        
         <h2> commande précedente </h2>
         <?php
             for($i=$n_command;$i>=0;$i--){
                 $command= get_command($i);
-                ?>
+                ?><article>
                 <h4> commande effectué le <?=$command[0]['date']?></h4>
                 <?php
                     foreach($command as $product){
                         echo"<p>".$product[0]."</p>";
                     }
+                ?></article><?php
 
             }
-    }
+            ?>
+        </section>
+            <?php
+        }
     ?>

@@ -132,7 +132,7 @@ body{
             background-color: rgb(249, 115, 0);
         }
 
-        article{ 
+        .marche article{ 
             justify-content: start;
             min-height:30vh ;
             display: flex;
@@ -211,7 +211,7 @@ body{
         }
 
 /* page panier/cart */
-#right section{
+#right .page_panier{
     min-height:90vh;
     padding-top:5vh;
     margin:0;
@@ -221,7 +221,8 @@ body{
     justify-content:space-around;
 }
     #right .cart{
-        min-height: 90%;
+        min-height: max-content;
+        height: 90%;
         overflow:visible;
         color:#000000;
         width: 70%;
@@ -274,6 +275,7 @@ body{
     }
     #right .paiement{
         width: 17%;
+        min-height: max-content;
         height:40%;
         max-height:90%;
         border-radius:1em;
@@ -316,7 +318,6 @@ body{
         width: 80%;
         margin-top: 0.5em;
         margin-bottom:0.5em;
-        padding: 0.5em,0.5em;
         padding-bottom: 0.5em;
         padding-top: 0.5em;
         font-size: 1.5em;
@@ -324,3 +325,12 @@ body{
     .paiement .prix_total{
         text-align: left;
     }
+/*page commande*/
+.command {
+    display: flex;
+    flex-direction: column;
+}
+.command article{
+    display: flex;
+    flex-direction: column;
+}

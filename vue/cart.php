@@ -13,7 +13,7 @@ if(isset($_POST['supprimer'])){
 $cart=get_cart_db();
 
 ?>
-<section>
+<section class="page_panier">
 <?php
 echo("<div class=\"cart\">");
     if(empty($cart)){
