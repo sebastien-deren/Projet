@@ -24,7 +24,8 @@ body{
     #left{
         flex:1;
         background-color: #F3F3F3;
-    }        
+
+    }     
 
         #left nav{
 
@@ -85,9 +86,9 @@ body{
         background-color: #F3F3F3;
         flex-direction: column;
         overflow: auto;
+        /*box-shadow: inset 5px 0px 3px #8C8C8C;*/
     }
-    header{
-        background-color: #F3F3F3;
+     #right > header{
         max-height: 5vh;
         display: flex;
         justify-content: space-between;
@@ -95,12 +96,13 @@ body{
         margin-left: 3em;
         margin-right: 2em;
     }
-        header h2{
+       #right > header h2{
             font-size: 1.2em;
             padding-top: 0;
             margin-top: 0.2em;
         }
         #presentation{
+        color: #f97300;
         text-align: left;
         margin-right: 2em;
         }
@@ -108,9 +110,6 @@ body{
         {
         font-size: 1em;
         }
-    header #presentation{
-        color: #f97300;
-    }
         #right #cat nav{
             justify-content: flex-start;
             display: flex;
@@ -133,8 +132,8 @@ body{
             background-color: rgb(249, 115, 0);
         }
 
-        article{
-
+        article{ 
+            justify-content: start;
             min-height:30vh ;
             display: flex;
             overflow:auto;
@@ -146,9 +145,7 @@ body{
             flex-direction: column;
         }
         .marche article {
-            display: flex;
-            flex-direction: row;
-            justify-content: start;
+
         }
         .marche .achat ,.rupture {
             padding:0;
@@ -184,11 +181,11 @@ body{
         .marche .info{
             background: rgba(0,0,0,0.7);
             width:100%;
-            min-height: 20%;
+            height: 30%;
             color: #F3F3F3; 
         }
         .marche .rupture .info{
-            background: rgba(249, 115, 0, 0.5);
+            background: rgba(249, 115, 0, 0.8);
 
         }
         @media only screen and (max-width: 900px){
@@ -214,3 +211,118 @@ body{
             height: 10vh;
             width: auto;
         }
+
+/* page panier/cart */
+#right section{
+    min-height:90vh;
+    padding-top:5vh;
+    margin:0;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content:space-around;
+}
+    #right .cart{
+        min-height: 90%;
+        overflow:visible;
+        color:#000000;
+        width: 70%;
+        display: flex;
+        background-color: #8C8C8C;
+        flex-direction: column;
+        justify-content:start;
+        border-radius:1em;
+        box-shadow: 0px 0px 7px #8C8C8C;
+        
+    }
+    #right .cart h2{
+        text-align: right;
+        margin-right: 1vw;
+
+    }
+    #right .cart header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    #right .cart header p{
+        text-align: left;
+        flex:1;
+        margin-left: 1vw;
+    }
+    #right .cart .produits{
+        background-color: #F3F3F3;
+        min-height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+    #right .cart form{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+        border-bottom: 0.3vh solid #8C8C8C;
+    }
+    #right .cart form *{
+        flex:1;
+        margin-left: 1vw;
+    }
+    #right .cart form input{
+        flex:1;
+    }
+    #right footer{
+        min-height: 4vh;
+    }
+    #right .paiement{
+        width: 17%;
+        height:40%;
+        max-height:90%;
+        border-radius:1em;
+        box-shadow: 0px 0px 7px #8C8C8C;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+    #right .paiement #csv{
+        width:3em;
+    }
+    .paiement > p{
+
+        flex:2;
+    }
+    .paiement .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        flex:2;
+    }
+    .paiement h4{
+        text-align: center;
+    }
+    .paiement .input_botom{
+        flex:1;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+    }
+    .paiement .checkout{
+        background-color: #f97300;
+        box-shadow: 0px 0px 7px ;
+        border-radius:10px;
+        border: none;
+        width: 80%;
+        margin-top: 0.5em;
+        margin-bottom:0.5em;
+        padding: 0.5em,0.5em;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+        font-size: 1.5em;
+    }
+    .paiement .prix_total{
+        text-align: left;
+    }

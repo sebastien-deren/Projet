@@ -20,7 +20,7 @@
             <!--<img src="images/accueil.png" alt="maison" class="icon"/>-->
             Commandes
         </div></a>
-        <a href="index.php?view=cart"><div class="<?= $in_page=="panier"? "in":"not_in"?>">
+        <a href="index.php?view=cart"><div class="<?= $in_page=="cart"? "in":"not_in"?>">
             Panier <?= $nombre_produit==0 ? "": "(".$nombre_produit.")"?>
         </div></a>
         <a href="index.php?deco"><div class="deco">
