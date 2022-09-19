@@ -8,7 +8,7 @@
 if (!isset($_SESSION['view'])) {
     $_SESSION['view'] = "connection";
 }
-if (isset($_SESSION['ID']) && null !== $_SESSION['ID']) {
+if (isset($_SESSION['id']) && null !== $_SESSION['id']) {
     if (isset($_POST['cart'])) {
         $_SESSION['view'] = "cart";
     } elseif (isset($_POST['connection']) || isset($_POST['checkout'])) {

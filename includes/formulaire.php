@@ -5,7 +5,7 @@
 //nous deconecte avant de choisir la vue(si on a choisi de se déconnecter ofc)
 if (isset($_GET['deco'])) {
     $_SESSION['FULL_NAME'] = null;
-    $_SESSION['ID'] = null;
+    $_SESSION['id'] = null;
 }
 //vide le cart lorsque qu'on checkout son cart
 if (isset($_POST['checkout'])) {

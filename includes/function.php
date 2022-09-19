@@ -12,7 +12,7 @@ function creer_session(): bool
         $status_log = connection_db($formulaire);
         if ($status_log != 0) {
             $_SESSION['FULL_NAME'] = $status_log['full_name'];
-            $_SESSION['ID'] = $status_log['id_user'];
+            $_SESSION['id'] = $status_log['id_user'];
             return 1;
         }
     }
