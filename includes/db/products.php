@@ -1,11 +1,11 @@
 <?php
 
-/** 
- *
- *   APPEL A LA TABLE PRODUIT
- *
- */
 
+/**
+ * va chercher toute les categories de la table products
+ *
+ * @return array
+ */
 function category_product_db(): array
 {
     include('config/mysql.php');
@@ -21,8 +21,12 @@ function category_product_db(): array
     }
     return $table_cat;
 }
-//retourne l'id la plus haute d'une table
-function get_max_id_products()
+/**
+ * retourne l'id la plus haute de la table products
+ *
+ * @return int
+ */
+function get_max_id_products(): int
 {
     include('config/mysql.php');
     $sql_querry = 'SELECT MAX(id_product) FROM products';
@@ -45,7 +49,13 @@ function update_product_db($product)
         ]
     );
 }
-function product_db($category): array
+/**
+ * va chercher les produits de products selon leur catégorie.
+ *
+ * @param string $category
+ * @return array
+ */
+function product_db(string $category): array
 {
     include('config/mysql.php');
     if ($category == "false") {

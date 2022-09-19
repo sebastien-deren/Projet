@@ -1,8 +1,10 @@
 <?php
-//gere l'affichage de la page de contenu
-//probablement à deplacer dans un fichier vue avec les autres vue_ pour une meilleure lisibilité
 
-//creer la session stockant l'id de l'utilisateur.
+/**
+ * creer la session stockant l'id de l'utilisateur.
+ *
+ * @return boolean
+ */
 function creer_session(): bool
 {
     if (!empty($_POST['email']) && !empty($_POST['mdp'])) {
@@ -16,7 +18,12 @@ function creer_session(): bool
     }
     return 0;
 }
-//verifie que le formulaire à été correctement rempli à retravailler ?
+// à retravailler ?
+/**
+ * verifie que le formulaire à été correctement rempli
+ *
+ * @return array
+ */
 function inscription(): array
 {
     $formulaire = $_POST;
@@ -52,30 +59,14 @@ function inscription(): array
     return inscription_db($array_inscription);
 }
 
-
-/*retourne les produits de la base de donnée product, soit toute la table ,
-     soit si une catégorie a été spécifié les produits de cette catégorie*/
-function product_db($category): array
-{
-    include('config/mysql.php');
-    if ($category == "false") {
-        $sql_querry = 'SELECT * from products';
-        $product_statement = $db->prepare($sql_querry);
-        $product_statement->execute();
-    } else {
-        $sql_querry = 'SELECT id_product,name, quantity, unit_quantity, price
-                FROM products WHERE category = :category';
-        $product_statement = $db->prepare($sql_querry);
-        $product_statement->execute(
-            [
-                'category' => $category,
-            ]
-        );
-    }
-    return $product_statement->fetchAll(PDO::FETCH_ASSOC);
-}
-//ajoute un produit a la table cart 
-function add_cart($id, $quantity): bool
+/**
+ * ajoute un produit a la table cart 
+ *
+ * @param integer $id
+ * @param integer $quantity
+ * @return boolean
+ */
+function add_cart(int $id, int $quantity): bool
 {
 
     $in_cart = check_in_cart_db($id);
@@ -95,9 +86,11 @@ function add_cart($id, $quantity): bool
     }
     return false;
 }
-//suprimer le cart de l'utilisateur et met a jour la table produits
-// !!! ajouter dans la vue marche un if pour si le produit est en rupture de stock quty==0
-//retravailler cette fonction en recursive ? permet de l'integrer pour le cas d'une suprresion d'un item dans le cart?
+/**
+ * vide le panier et rempli la table de commande s'éxecute lors du paiement du panier.
+ *
+ * @return void
+ */
 function command_cart()
 {
     $cart = get_cart_db();
@@ -116,24 +109,45 @@ function command_cart()
     return $n_command;
 }
 
-
-//gere l'affichage du prix en euro
+/**
+ * gere l'affichage du prix en euro
+ *
+ * @param integer $prix
+ * @return string
+ */
 function affiche_prix(int $prix): string
 {
     return $prix % 100 == 0 ? intdiv($prix, 100) . "€" : intdiv($prix, 100) . "€" . $prix % 100;
 }
-//gere l'affichage du poids en Kg
+/**
+ * gere l'affichage du poids en Kg
+ *
+ * @param integer $mass
+ * @return string
+ */
 function affiche_poids(int $mass): string
 {
     return $mass % 1000 == 0 ? intdiv($mass, 1000) . "," : intdiv($mass, 1000) . "," . $mass % 1000;
 }
-//gere les decimale d'un produit en kg (solution non implémentée)
+/**
+ * gere les decimale d'un produit en kg (solution non implémentée)
+ *
+ * @param array $product
+ * @return float
+ */
 function prix_produit(array $product): float
 {
     return $product['unit_quantity'] == 'kg' ?
         ($product['quantity_cart'] * $product['price']) / 100000 : ($product['quantity_cart'] * $product['price']) / 100;
 }
-function dateToFrench($date, $format)
+/**
+ * traduit la date anglaise en français
+ *
+ * @param string $date
+ * @param string $format
+ * @return string
+ */
+function dateToFrench(string $date, string $format): string
 {
     $english_days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
     $french_days = array('Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche');
@@ -141,6 +155,12 @@ function dateToFrench($date, $format)
     $french_months = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
     return str_replace($english_months, $french_months, str_replace($english_days, $french_days, date($format, strtotime($date))));
 }
+/**
+ * decompose le texte d'une colonne de command pour en extraire le prix et formate le texte.
+ *
+ * @param array $command
+ * @return array
+ */
 function affiche_commande(array $command): array
 {
     $affiche = "";

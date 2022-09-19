@@ -14,7 +14,7 @@ function get_num_command_db()
     $max_statement = $db->prepare($sql_querry);
     $max_statement->execute(
         [
-            'id_users' => $_SESSION['ID'],
+            'id_users' => intval($_SESSION['id']),
         ]
     );
     $max_command = $max_statement->fetch();
@@ -32,7 +32,7 @@ function command_product_db(array $product, int $n_command)
     $insert_command->execute(
         [
             'n_command' => $n_command,
-            'id_users' => $_SESSION['ID'],
+            'id_users' => intval($_SESSION['id']),
             'product_text' => $product_text,
         ]
 
@@ -46,7 +46,7 @@ function get_command(int $n_command)
     $get_command->execute(
         [
             'n_command' => $n_command,
-            'id_users' => $_SESSION['ID'],
+            'id_users' => intval($_SESSION['id']),
         ]
     );
     return $get_command->fetchALL();
