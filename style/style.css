@@ -3,112 +3,118 @@
 @import url(marche.css);
 @import url(command.css);
 @import url(connection.css);
+@import url(inscription.css);
 @font-face {
-    font-family: "sf-pro";
-    src: url(/style/SF-Pro.ttf);
+  font-family: "sf-pro";
+  src: url(/style/SF-Pro.ttf);
 }
-a:visited{
-    color: #8C8C8C;
+a:visited {
+  color: #8c8c8c;
 }
-body{
-    font-family:"sf-pro",sans-serif ;
-    margin: 0;
-    background-color: #F3F3F3;
-    z-index: -2;
-    color: #8C8C8C;
-    display: flex;
-    overflow: auto;
-    height: 100vh;
+body {
+  font-family: "sf-pro", sans-serif;
+  margin: 0;
+  background-color: #f3f3f3;
+  z-index: -2;
+  color: #8c8c8c;
+  display: flex;
+  overflow: auto;
+  height: 100vh;
 }
-    #left{
-        height: 100vh;
-        z-index: 1;
-        flex:1;
-        background-color: #F3F3F3;
-        box-shadow: 5px 0px 5px #8C8C8C;
+.button {
+  background-color: #f97300;
+  border-radius: 10px;
+  border: none;
+  padding: 0.2em;
+  font-size: 1.3em;
+}
+.button:hover {
+  background: rgba(249, 115, 0, 0.5);
+}
+#left {
+  height: 100vh;
+  z-index: 1;
+  flex: 1;
+  background-color: #f3f3f3;
+  box-shadow: 5px 0px 5px #8c8c8c;
+}
 
-    }     
+#left nav {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: auto;
+  align-items: center;
+}
+#left #date {
+  padding-top: 0.5em;
+  padding-left: 1em;
+  width: 80%;
+  text-align: left;
+  margin-bottom: 2em;
+  font-weight: bold;
+}
+#left nav a {
+  display: flex;
+  flex: auto;
+  text-align: center;
+  color: #8c8c8c;
+  text-decoration: none;
+}
+#left section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 80%;
+  justify-content: center;
+}
+#left nav section a:hover {
+  background: rgba(249, 115, 0, 0.5);
+  border-radius: 10px;
+  color: #000000;
+}
+#left nav section div {
+  width: 80%;
+  padding: 1em;
+  display: flex;
+  font-size: 1.3em;
+  flex: auto;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+#left nav section .in {
+  background-color: #f97300;
+  border-radius: 10px;
+  color: #f3f3f3;
+}
 
-        #left nav{
-
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            flex: auto;
-            align-items: center;
-            
-        }
-            #left #date{
-                padding-top: 0.5em;
-                padding-left: 1em;
-                width:80%;
-                text-align: left;
-                margin-bottom: 2em;
-                font-weight: bold;
-            }
-            #left nav a{  
-                display: flex;
-                flex:auto;
-                text-align: center;
-                color: #8C8C8C;;
-                text-decoration: none;            
-            }
-            #left section{
-                
-                display: flex;
-                flex-direction: column;
-                flex:1;
-                width: 80%;
-                justify-content: center;
-            }
-            #left nav section a:hover{
-                background: rgba(249,115,0,0.5);
-                border-radius: 10px;
-                color:#000000;
-            }
-            #left nav section div{
-                width: 80%;
-                padding: 1em;
-                display: flex;
-                font-size: 1.3em;
-                flex:auto;
-                flex-direction: column;
-                justify-content: center;
-                text-align: left;
-            }
-            #left nav section .in{
-                background-color: #f97300 ;  
-                border-radius: 10px;
-                color:#F3F3F3;
-            }
-
-    #right{
-        padding-left: 3em;
-        max-height: 100vh;
-        display: flex;
-        flex:5;
-        flex-direction: column;
-        overflow: auto;
-        /*box-shadow: inset 5px 0px 3px #8C8C8C;*/
-    }
-     #right > header{
-        max-height: 5vh;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 0.5;
-        margin-left: 3em;
-        margin-right: 2em;
-    }
-       #right > header h2{
-            font-size: 1.2em;
-            padding-top: 0.3em;
-        }
-        #presentation{
-        color: #f97300;
-        text-align: left;
-        margin-right: 2em;
-        }
-        #presentation h1
-        {
-        font-size: 1em;
-        }
+#right {
+  padding-left: 3em;
+  max-height: 100vh;
+  display: flex;
+  flex: 5;
+  flex-direction: column;
+  overflow: auto;
+  /*box-shadow: inset 5px 0px 3px #8C8C8C;*/
+}
+#right > header {
+  max-height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5;
+  margin-left: 3em;
+  margin-right: 2em;
+}
+#right > header h2 {
+  font-size: 1.2em;
+  padding-top: 0.3em;
+}
+#presentation {
+  color: #f97300;
+  text-align: left;
+  margin-right: 2em;
+}
+#presentation h1 {
+  font-size: 1em;
+}
