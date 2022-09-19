@@ -1,0 +1,29 @@
+.form_connection {
+  height: 80%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form_connection form {
+  width: 600px;
+  padding: 1em;
+  border-radius: 1em;
+  box-shadow: 0 0 1em #8c8c8c;
+  display: flex;
+  flex-direction: column;
+}
+.form_connection form p {
+  padding: none;
+  margin: none;
+}
+.form_connection form input {
+  margin: 00.2em;
+  width: 20em;
+}
+.form_connection form .input {
+  margin-top: 1em;
+  display: flex;
+  flex: row;
+  justify-content: space-around;
+}

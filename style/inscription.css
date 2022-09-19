@@ -1,0 +1,28 @@
+.form_inscription {
+  height: 80%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form_inscription form {
+  width: 400px;
+  padding: 0.5em;
+  border-radius: 1em;
+  box-shadow: 0 0 1em #8c8c8c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.form_inscription form div {
+  padding: 0.5em;
+}
+.form_inscription form div:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form_inscription .button {
+  width: 100%;
+  text-align: center;
+}
