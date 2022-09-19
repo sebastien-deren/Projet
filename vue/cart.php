@@ -13,14 +13,16 @@ if(isset($_POST['supprimer'])){
 $cart=get_cart_db();
 
 ?>
-<section>
+<section class="page_panier">
 <?php
-echo("<div class=\"cart\">");
+
     if(empty($cart)){
+        echo("<div class=\"empty\">");
         echo("<h2>votre panier est vide</h2>");
-echo("</div>");
+        echo("</div>");
     }
     else{
+        echo("<div class=\"cart\">");
         $prix_total=0;
         echo("<header>");
         echo("<p>Produit</p><p>Prix</p><p>qty</p><p>subtotatl</p><p>suprimmer</p>");
@@ -46,13 +48,13 @@ echo("</div>");
         }
         echo("</div>");
 
-    echo("<footer><h2> prix total:".affiche_prix($prix_total)."</h2></footer>");
+    echo("<footer><h2> Prix total:".affiche_prix($prix_total)."</h2></footer>");
 echo("</div>");
 ?>
     <form method="post" action='index.php' class="paiement">
     <h4> Paiement</h4>
     <div>
-    <p class="prix_total">prix total : <?=affiche_prix($prix_total)?></p>
+    <p class="prix_total">Prix total : <?=affiche_prix($prix_total)?></p>
     </div>
     <div class="info">
         <h4>Information de paiement</h4>

@@ -1,5 +1,8 @@
-
-
+@import url(cart.css);
+@import url(left_nav.css);
+@import url(marche.css);
+@import url(command.css);
+@import url(connection.css);
 @font-face {
     font-family: "sf-pro";
     src: url(/style/SF-Pro.ttf);
@@ -10,20 +13,19 @@ a:visited{
 body{
     font-family:"sf-pro",sans-serif ;
     margin: 0;
-    background-color: rgb(114, 90, 128);
+    background-color: #F3F3F3;
+    z-index: -2;
     color: #8C8C8C;
     display: flex;
     overflow: auto;
+    height: 100vh;
 }
-
-    #down{
-        display: flex;
-        flex-direction: row;
-        height:100vh;
-    }
     #left{
+        height: 100vh;
+        z-index: 1;
         flex:1;
         background-color: #F3F3F3;
+        box-shadow: 5px 0px 5px #8C8C8C;
 
     }     
 
@@ -34,9 +36,10 @@ body{
             text-align: left;
             flex: auto;
             align-items: center;
+            
         }
             #left #date{
-                padding-top: 00.3em;
+                padding-top: 0.5em;
                 padding-left: 1em;
                 width:80%;
                 text-align: left;
@@ -80,10 +83,10 @@ body{
             }
 
     #right{
-        height: 100vh;
+        padding-left: 3em;
+        max-height: 100vh;
         display: flex;
         flex:5;
-        background-color: #F3F3F3;
         flex-direction: column;
         overflow: auto;
         /*box-shadow: inset 5px 0px 3px #8C8C8C;*/
@@ -98,8 +101,7 @@ body{
     }
        #right > header h2{
             font-size: 1.2em;
-            padding-top: 0;
-            margin-top: 0.2em;
+            padding-top: 0.3em;
         }
         #presentation{
         color: #f97300;
@@ -110,217 +112,3 @@ body{
         {
         font-size: 1em;
         }
-        #right #cat nav{
-            justify-content: flex-start;
-            display: flex;
-            overflow: scroll;
-        }
-        #right #cat nav a{
-            text-decoration: none;
-        }
-        #right #cat nav .element{
-            margin: 1em;
-            display: flex;
-            align-items: end;
-            justify-content: center;
-            width: 5em;
-            height:6em;
-            padding:0.5em;
-            color:#F3F3F3;
-            border-radius: 1em;
-            flex:1;
-            background-color: rgb(249, 115, 0);
-        }
-
-        article{ 
-            justify-content: start;
-            min-height:30vh ;
-            display: flex;
-            overflow:auto;
-            flex-wrap: wrap;
-            flex-direction: row;
-        }
-        .marche{
-            display: flex;
-            flex-direction: column;
-        }
-
-        .marche .achat ,.rupture {
-            padding:0;
-            margin:0.2vw;
-            display: flex;
-            width: 16vw;
-            min-width: 15vw;
-            height: 15vw;
-            flex-direction: column;
-            overflow: auto;
-            background-image:url(../images/BOF.jpg);
-            background-size: cover;
-            justify-content:space-between;
-            align-items: center;
-            border-radius: 10px;
-        }
-        .marche .achat .nom{
-            font-size: 2em;
-            background: rgba(0,0,0,0.5);
-            color: #F3F3F3;
-            width: 100%;
-            text-align: center;
-
-        }
-        .marche .rupture .nom{
-            font-size: 2em;
-            background: rgba(249, 115, 0, 0.5);
-            color: #F3F3F3;
-            width: 100%;
-            text-align: center;
-
-        }
-        .marche .info{
-            background: rgba(0,0,0,0.7);
-            width:100%;
-            height: 30%;
-            color: #F3F3F3; 
-        }
-        .marche .rupture .info{
-            background: rgba(249, 115, 0, 0.8);
-
-        }
-        @media only screen and (max-width: 900px){
-            .marche .achat,.rupture{
-                width: 35vw;
-                height:35vw;
-            }
-        }
-        .marche .rupture{
-            background-color: tomato;
-        }
-        .marche .achat div{
-            flex-wrap: wrap;
-
-        }
-        .number{
-            max-width: 50%;
-        }
-        .submit{
-            max-width: 90%;
-        }
-        .imgproduct{
-            height: 10vh;
-            width: auto;
-        }
-
-/* page panier/cart */
-#right section{
-    min-height:90vh;
-    padding-top:5vh;
-    margin:0;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content:space-around;
-}
-    #right .cart{
-        min-height: 90%;
-        overflow:visible;
-        color:#000000;
-        width: 70%;
-        display: flex;
-        background-color: #8C8C8C;
-        flex-direction: column;
-        justify-content:start;
-        border-radius:1em;
-        box-shadow: 0px 0px 7px #8C8C8C;
-        
-    }
-    #right .cart h2{
-        text-align: right;
-        margin-right: 1vw;
-
-    }
-    #right .cart header{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-    #right .cart header p{
-        text-align: left;
-        flex:1;
-        margin-left: 1vw;
-    }
-    #right .cart .produits{
-        background-color: #F3F3F3;
-        min-height: 90%;
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-    }
-    #right .cart form{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 0;
-        border-bottom: 0.3vh solid #8C8C8C;
-    }
-    #right .cart form *{
-        flex:1;
-        margin-left: 1vw;
-    }
-    #right .cart form input{
-        flex:1;
-    }
-    #right footer{
-        min-height: 4vh;
-    }
-    #right .paiement{
-        width: 17%;
-        height:40%;
-        max-height:90%;
-        border-radius:1em;
-        box-shadow: 0px 0px 7px #8C8C8C;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding-left: 3em;
-        padding-right: 3em;
-    }
-    #right .paiement #csv{
-        width:3em;
-    }
-    .paiement > p{
-
-        flex:2;
-    }
-    .paiement .info{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-
-        flex:2;
-    }
-    .paiement h4{
-        text-align: center;
-    }
-    .paiement .input_botom{
-        flex:1;
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        align-items: center;
-    }
-    .paiement .checkout{
-        background-color: #f97300;
-        box-shadow: 0px 0px 7px ;
-        border-radius:10px;
-        border: none;
-        width: 80%;
-        margin-top: 0.5em;
-        margin-bottom:0.5em;
-        padding: 0.5em,0.5em;
-        padding-bottom: 0.5em;
-        padding-top: 0.5em;
-        font-size: 1.5em;
-    }
-    .paiement .prix_total{
-        text-align: left;
-    }

@@ -1,5 +1,4 @@
 <?php
-    print_r($_SESSION['ID']);
     $n_command=get_num_command_db();
     if (is_null($n_command)){
         ?>
@@ -14,28 +13,43 @@
         $command =get_command($n_command);
         $n_command--;
         ?>
-        <h2>dernière commande! effectué le <?=$command[0]['date']?></h2>
+        <section class="command">
+        
+        <h2>Dernière commande!</h2>
+        <article class="last_command">
+        <header>
+        <h4> Commande effectué le <?=$command[0]['date']?></h4>
+        </header>
+        <div class="list">
         <?php
-
-            
-            foreach($command as $product){
-                $ar_product=explode(",",$product[0]);
-
-                echo "<p>".$ar_product[1].$ar_product[0]." à ".affiche_prix($ar_product[2])." </p>";
-
-            }
+            $parse_command=affiche_commande($command);
+            echo($parse_command["affiche"]);
         ?> 
-        <h2> commande précedente </h2>
+        </div>
+        <div class="total">Total: <?=affiche_prix($parse_command["prix"])?></div>
+        </article>
+        
+        <h2> Commande précedente </h2>
         <?php
             for($i=$n_command;$i>=0;$i--){
                 $command= get_command($i);
-                ?>
-                <h4> commande effectué le <?=$command[0]['date']?></h4>
+                ?><article>
+                    <header>
+                        <h4> Commande effectué le <?=$command[0]['date']?></h4>
+                    </header>
+                    <div class="list">
                 <?php
-                    foreach($command as $product){
-                        echo"<p>".$product[0]."</p>";
-                    }
+                    $parse_command =affiche_commande($command);
+                    echo ($parse_command["affiche"]);
+                ?></div>
+            <div class="total">Total: <?=affiche_prix($parse_command["prix"])?></div>
+            </article><?php
+                
 
             }
-    }
+            ?>
+        </section>
+            <?php
+        }
     ?>
+    <?php
