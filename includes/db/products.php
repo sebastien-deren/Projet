@@ -45,3 +45,22 @@ function update_product_db($product)
         ]
     );
 }
+function product_db($category): array
+{
+    include('config/mysql.php');
+    if ($category == "false") {
+        $sql_querry = 'SELECT * from products';
+        $product_statement = $db->prepare($sql_querry);
+        $product_statement->execute();
+    } else {
+        $sql_querry = 'SELECT id_product,name, quantity, unit_quantity, price
+                FROM products WHERE category = :category';
+        $product_statement = $db->prepare($sql_querry);
+        $product_statement->execute(
+            [
+                'category' => $category,
+            ]
+        );
+    }
+    return $product_statement->fetchAll(PDO::FETCH_ASSOC);
+}
