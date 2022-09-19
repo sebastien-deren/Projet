@@ -167,8 +167,8 @@ function affiche_commande(array $command): array
     $prix_total = 0;
     foreach ($command as $product) {
         $ar_product = explode(",", $product[0]);
-        $affiche = $affiche . "<p>" . $ar_product[1] . $ar_product[0] . $ar_product[2] . " à " . affiche_prix($ar_product[2]) . " </p>";
-        $prix_total += $ar_product[2];
+        $affiche = $affiche . "<p>" . $ar_product[1] . $ar_product[0] . " à " . affiche_prix($ar_product[2]) . " </p>";
+        $prix_total += ($ar_product[2] * $ar_product[1]);
     }
 
     return ["affiche" => $affiche, "prix" => $prix_total];
