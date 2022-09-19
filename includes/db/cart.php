@@ -17,7 +17,7 @@ function get_cart_db(): array
     $cart_print = $db->prepare($sql_querry);
     $cart_print->execute(
         [
-            'id_user' => $_SESSION['ID'],
+            'id_user' => intval($_SESSION['id']),
         ]
     );
     return $cart_print->fetchAll(PDO::FETCH_ASSOC);
@@ -30,7 +30,7 @@ function check_in_cart_db($id)
     $id_check->execute(
         [
             'id_product' => $id,
-            'id_user' => $_SESSION['ID'],
+            'id_user' => intval($_SESSION['id']),
         ]
     );
     return $id_check->fetchALL();
@@ -42,7 +42,7 @@ function get_number_in_cart_db()
     $count = $db->prepare($sql_querry);
     $count->execute(
         [
-            'id_user' => $_SESSION['ID'],
+            'id_user' => intval($_SESSION['id']),
         ]
     );
     $nb_item = $count->fetch();
@@ -56,7 +56,7 @@ function add_in_cart_db(int $id, int $quantity)
     $cart_insert->execute(
         [
             'id_product' => $id,
-            'id_user' => $_SESSION['ID'],
+            'id_user' => intval($_SESSION['id']),
             'quantity_cart' => $quantity,
 
 
@@ -71,7 +71,7 @@ function update_in_cart_db(int $id, int $quantity)
     $cart_insert->execute(
         [
             'id_product' => $id,
-            'id_user' => $_SESSION['ID'],
+            'id_user' => intval($_SESSION['id']),
             'quantity_cart' => $quantity,
 
 
@@ -86,7 +86,7 @@ function delete_item_in_cart_db($id)
     $prod_delete = $db->prepare($sql_querry);
     $prod_delete->execute(
         [
-            'id_user' => $_SESSION['ID'],
+            'id_user' => intval($_SESSION['id']),
             'id_product' => $id,
         ]
     );
@@ -100,7 +100,7 @@ function delete_cart_db()
     $cart_delete = $db->prepare($sql_querry);
     $cart_delete->execute(
         [
-            'id_user' => $_SESSION['ID'],
+            'id_user' => intval($_SESSION['id']),
         ]
     );
     return;
