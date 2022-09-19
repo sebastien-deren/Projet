@@ -1,0 +1,124 @@
+#right > header{
+    max-height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5;
+    margin-left: 3em;
+    margin-right: 2em;
+}
+   #right > header h2{
+        font-size: 1.2em;
+        padding-top: 0;
+        margin-top: 0.2em;
+    }
+    #presentation{
+    color: #f97300;
+    text-align: left;
+    margin-right: 2em;
+    }
+    #presentation h1
+    {
+    font-size: 1em;
+    }
+    #right #body{
+        padding-left: 20px;
+    }
+    #right #cat nav{
+        justify-content: flex-start;
+        display: flex;
+        overflow: scroll;
+    }
+    #right #cat nav a{
+        text-decoration: none;
+    }
+    #right #cat nav .element{
+        margin: 1em;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        width: 5em;
+        height:6em;
+        padding:0.5em;
+        color:#F3F3F3;
+        border-radius: 1em;
+        flex:1;
+        background-color: rgb(249, 115, 0);
+    }
+
+    .marche article{ 
+        justify-content: start;
+        min-height:30vh ;
+        display: flex;
+        overflow:auto;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .marche{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .marche .achat ,.rupture {
+        padding:0;
+        margin:0.2vw;
+        display: flex;
+        width: 16vw;
+        min-width: 15vw;
+        height: 15vw;
+        flex-direction: column;
+        overflow: auto;
+        background-image:url(../images/BOF.jpg);
+        background-size: cover;
+        justify-content:space-between;
+        align-items: center;
+        border-radius: 10px;
+    }
+    .marche .achat .nom{
+        font-size: 2em;
+        background: rgba(0,0,0,0.5);
+        color: #F3F3F3;
+        width: 100%;
+        text-align: center;
+
+    }
+    .marche .rupture .nom{
+        font-size: 2em;
+        background: rgba(249, 115, 0, 0.5);
+        color: #F3F3F3;
+        width: 100%;
+        text-align: center;
+
+    }
+    .marche .info{
+        background: rgba(0,0,0,0.7);
+        width:100%;
+        height: 30%;
+        color: #F3F3F3; 
+    }
+    .marche .rupture .info{
+        background: rgba(249, 115, 0, 0.8);
+
+    }
+    @media only screen and (max-width: 900px){
+        .marche .achat,.rupture{
+            width: 35vw;
+            height:35vw;
+        }
+    }
+    .marche .rupture{
+        background-color: tomato;
+    }
+    .marche .achat div{
+        flex-wrap: wrap;
+
+    }
+    .marche .number{
+        max-width: 50%;
+    }
+    .marche .submit{
+        max-width: 90%;
+    }
+    .marche .imgproduct{
+        height: 10vh;
+        width: auto;
+    }

@@ -1,4 +1,5 @@
-<div id="cat">
+<div id="body">
+    <div id="cat">
         <h2> Catégories</h2>
         
         <nav>
@@ -17,7 +18,6 @@
         }
         ?>
     </nav>
-    <div class=lien><a href="index.php?view=cart"> acceder au panier</a></div>
 </div>
     
 
@@ -82,4 +82,5 @@
     echo"</form>";
 
 ?>
+</div>
 </div>

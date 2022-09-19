@@ -136,4 +136,15 @@ function dateToFrench($date, $format)
     $french_months = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
     return str_replace($english_months, $french_months, str_replace($english_days, $french_days, date($format, strtotime($date) ) ) );
 }
+function affiche_commande(array $command):array{
+    $affiche="";
+    $prix_total=0;
+    foreach($command as $product){
+        $ar_product=explode(",",$product[0]);
+        $affiche= $affiche."<p>".$ar_product[1].$ar_product[0].$ar_product[2]." à ".affiche_prix($ar_product[2])." </p>";
+        $prix_total += $ar_product[2];
+    }
+
+    return ["affiche" =>$affiche,"prix"=> $prix_total];
+}
 ?>

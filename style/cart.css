@@ -1,0 +1,126 @@
+#right .page_panier{
+    padding-top:5vh;
+    margin:0;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content:space-around;
+}
+    #right .cart{
+        min-height: max-content;
+        overflow:visible;
+        color:#000000;
+        width: 70%;
+        display: flex;    
+        flex-direction: column;
+        justify-content:start;
+        border-radius:1em;
+        box-shadow: 0px 0px 7px #8C8C8C;
+        
+    }
+    #right .cart h2{
+        text-align: right;
+        margin-right: 1vw;
+
+    }
+    #right .cart header{
+        height:50px;
+        background-color: #8C8C8C;
+        border-radius:1em 1em 0 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    #right .cart header p{
+        text-align: center;
+        flex:1;
+        margin-left: 1vw;
+    }
+    #right .cart .produits{
+        background-color: #F3F3F3;
+        display: flex;
+        min-height: 600px;
+        flex-direction: column;
+        justify-content: start;
+    }
+    #right .cart form{
+        text-align: center;
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+        border-bottom: 0.3vh solid #8C8C8C;
+    }
+    #right .cart form *{
+        flex:1;
+        margin-left: 1vw;
+    }
+    #right .cart form input{
+        flex:1;
+    }
+    #right .cart footer{
+        height: 4em;
+        border-radius: 0 0 1em 1em;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+       }
+    #right .cart footer h2{
+        background-color: #f97300;
+        padding: 0.4em;
+        border-radius: 0.4em;
+    }
+    #right .paiement{
+        width: 17%;
+        height: 450px;
+        border-radius:1em;
+        box-shadow: 0px 0px 7px #8C8C8C;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+    #right .paiement #csv{
+        width:3em;
+    }
+    .paiement > p{
+
+        flex:2;
+    }
+    .paiement .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        flex:2;
+    }
+    .paiement h4{
+        text-align: center;
+    }
+    .paiement .input_botom{
+        flex:1;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+    }
+    .paiement .checkout{
+        background-color: #f97300;
+        box-shadow: 0px 0px 7px ;
+        border-radius:10px;
+        border: none;
+        width: 80%;
+        margin-top: 0.5em;
+        margin-bottom:0.5em;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+        font-size: 1.5em;
+    }
+    .paiement .checkout:hover{
+        background: rgba(249,115,0,0.5);
+    }
+    .paiement .prix_total{
+        text-align: left;
+    }
