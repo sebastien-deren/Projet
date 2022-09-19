@@ -55,7 +55,15 @@
   margin-left: 1vw;
 }
 #right .cart form input {
-  flex: 1;
+  flex: none;
+  background-color: #f3f3f3;
+  border: none;
+  background-image: url(../images/delete64.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 80%;
+  aspect-ratio: 1/1;
 }
 #right .cart footer {
   height: 4em;
