@@ -39,15 +39,14 @@ function doublon_email_db(string $email): bool
 }
 
 //inscrit la personne dans la table users
-function inscription_db(array $verif_form)
+function inscription_db(array $verif_form): bool
 {
     include('config/mysql.php');
     $sql_querry = 'INSERT INTO users(full_name, email, passwrd ) VALUES(:full_name, :email, :passwrd)';
     $insert_user = $db->prepare($sql_querry);
-    $insert_user->execute([
+    return $insert_user->execute([
         'full_name' => $verif_form['full_name'],
         'email' => $verif_form['email'],
         'passwrd' => $verif_form['password'],
     ]);
-    return $verif_form;
 }

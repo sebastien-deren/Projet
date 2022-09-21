@@ -19,10 +19,8 @@ if (isset($_POST['connection'])) {
 // gère l'inscription d'une personne
 if (isset($_POST['inscrit'])) {
     $verif_form = inscription();
-    foreach ($verif_form as $verif_champ) {
-        if ($verif_champ == false) {
-            $_POST['inscription'] = "reinscription";
-        }
+    if ($verif_form == false) {
+        $_POST['inscription'] = "reinscription";
     }
     $verif_inscription =  isset($_POST['inscription']) ? false : true;
 }

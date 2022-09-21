@@ -8,7 +8,7 @@
 function creer_session(): bool
 {
     if (!empty($_POST['email']) && !empty($_POST['mdp'])) {
-        $formulaire = ['email' => $_POST['email'], 'mdp' => $_POST['mdp']];
+        $formulaire = ['email' => strip_tags($_POST['email']), 'mdp' => strip_tags($_POST['mdp'])];
         $status_log = connection_db($formulaire);
         if ($status_log != 0) {
             $_SESSION['FULL_NAME'] = $status_log['full_name'];
@@ -24,39 +24,32 @@ function creer_session(): bool
  *
  * @return array
  */
-function inscription(): array
+function inscription(): bool
 {
     $formulaire = $_POST;
     $array_inscription = [];
     if ((isset($formulaire['nom'], $formulaire['prenom']))) {
         $full_name = "" . strip_tags($formulaire['nom']) . " " . strip_tags($formulaire['prenom']) . "";
-        if (
-            isset($formulaire['mdp'], $formulaire['mdp_confirm']) &&
-            ($formulaire['mdp'] === $formulaire['mdp_confirm'])
-        ) {
-            $mdp = password_hash($formulaire['mdp'], PASSWORD_DEFAULT);
+    }
+    if (
+        isset($formulaire['mdp'], $formulaire['mdp_confirm']) &&
+        ($formulaire['mdp'] === $formulaire['mdp_confirm'])
+    ) {
+        $mdp = password_hash($formulaire['mdp'], PASSWORD_DEFAULT);
+    }
+    if (
+        isset($formulaire['email']) && filter_var($formulaire['email'], FILTER_VALIDATE_EMAIL) &&
+        !doublon_email_db($formulaire['email'])
+    ) {
+        $email = $formulaire['email'];
+    }
+    if (isset($email) && isset($mdp) && isset($full_name)) {
 
-            if (
-                isset($formulaire['email']) && filter_var($formulaire['email'], FILTER_VALIDATE_EMAIL) &&
-                !doublon_email_db($formulaire['email'])
-            ) {
-                $email = $formulaire['email'];
-            } else {
-                $email = false;
-            }
-        } else {
-            $mdp = false;
-        }
+        $array_inscription = ['full_name' => $full_name, 'password' => $mdp, 'email' => $email];
+        return inscription_db($array_inscription);
     } else {
-        $full_name = false;
+        return 0;
     }
-    $array_inscription = ['full_name' => $full_name, 'password' => $mdp, 'email' => $email];
-    foreach ($array_inscription as $champ) {
-        if ($champ == false) {
-            return $array_inscription;
-        }
-    }
-    return inscription_db($array_inscription);
 }
 
 /**
