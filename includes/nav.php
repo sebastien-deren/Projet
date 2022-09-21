@@ -6,7 +6,7 @@
     <section class="cat_nav">
         <?php
         $in_page = $_SESSION['view'];
-        if (isset($_SESSION['ID'])) {
+        if (isset($_SESSION['id'])) {
             $nombre_produit = get_number_in_cart_db();
 
         ?>
