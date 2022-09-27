@@ -9,8 +9,10 @@ if (is_null($n_command)) {
 </p>
 <?php
 } else {
+
     $command = get_command($n_command);
     $n_command--;
+
 ?>
 <section class="command">
 

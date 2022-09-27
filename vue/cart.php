@@ -24,7 +24,7 @@ $cart = get_cart_db();
         echo ("<div class=\"cart\">");
         $prix_total = 0;
         echo ("<header>");
-        echo ("<p>Produit</p><p>Prix</p><p>qty</p><p>subtotatl</p><p>suprimmer</p>");
+        echo ("<p>Produit</p><p>Prix</p><p>Qty</p><p>Subtotatl</p><p>Suprimmer</p>");
         echo ("</header>");
         echo ("<div class=\"produits\">");
         foreach ($cart as $product) {
@@ -39,10 +39,10 @@ $cart = get_cart_db();
 
             echo ("<p> " . affiche_prix($prix_produit) . "</p>");
     ?>
-            <input type="hidden" value=<?= $product['id_product'] ?> name="id_product" />
-            <div><input class="supr" type="submit" value="" name="supprimer" /></div>
+    <input type="hidden" value=<?= $product['id_product'] ?> name="id_product" />
+    <div><input class="supr" type="submit" value="" name="supprimer" /></div>
 
-        <?php
+    <?php
             // Ilham Fitrotul Hayat icon delete
             echo "</form>";
         }
@@ -51,29 +51,30 @@ $cart = get_cart_db();
         echo ("<footer><h2> Prix total:" . affiche_prix($prix_total) . "</h2></footer>");
         echo ("</div>");
         ?>
-        <form method="post" action='index.php' class="paiement">
-            <h4> Paiement</h4>
+    <form method="post" action='index.php' class="paiement">
+        <h4> Paiement</h4>
+        <div>
+            <p class="prix_total">Prix total : <?= affiche_prix($prix_total) ?></p>
+        </div>
+        <div class="info">
+            <h4>Information de paiement</h4>
             <div>
-                <p class="prix_total">Prix total : <?= affiche_prix($prix_total) ?></p>
+                <label for="cb">Numéro de carte bancaire</label></br>
+                <input type="tel" id="cb" name="cb" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
+                    placeholder="ne pas remplir">
             </div>
-            <div class="info">
-                <h4>Information de paiement</h4>
-                <div>
-                    <label for="cb">Numéro de carte bancaire</label></br>
-                    <input type="tel" id="cb" name="cb" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" placeholder="ne pas remplir">
-                </div>
-                <div>
-                    <label for="date">Date d'expiration</label></br>
-                    <input type="date" id="date" name="date"></br>
-                </div>
-                <div>
-                    <label for="csv">CSV</label>
-                    <input type="tel" id="csv" name="csv" pattern="[0-9]{3}" placeholder="NON">
-                </div>
+            <div>
+                <label for="date">Date d'expiration</label></br>
+                <input type="date" id="date" name="date"></br>
             </div>
-            <h4 class="input_botom"><input class="button" type="submit" value="Pay" name="checkout" /> </h4>
+            <div>
+                <label for="csv">CSV</label>
+                <input type="tel" id="csv" name="csv" pattern="[0-9]{3}" placeholder="NON">
+            </div>
+        </div>
+        <h4 class="input_botom"><input class="button" type="submit" value="Pay" name="checkout" /> </h4>
 
-        </form>
+    </form>
     <?php
     }
     ?>

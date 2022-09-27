@@ -5,17 +5,15 @@
         <nav>
             <?php
             $categories = category_product_db();
-            $i = 0;
             foreach ($categories as $category) {
             ?>
-                <a href="#<?= $category ?>">
-                    <div class="element">
-                        <?= $category ?>
-                    </div>
-                </a>
+            <a href="#<?= $category ?>">
+                <div class="element">
+                    <?= $category ?>
+                </div>
+            </a>
 
             <?php
-                $i++;
             }
             ?>
         </nav>
@@ -25,10 +23,10 @@
     <div class="marche">
 
         <?php
-        $cat_products = category_product_db();
+
 
         echo "<form method='POST' action='index.php'>";
-        foreach ($cat_products as $category) {
+        foreach ($categories as $category) {
             echo ('<h2>' . $category . '</h2>');
             echo ("<article id=\"" . $category . "\">");
             $products = product_db($category);
@@ -49,28 +47,25 @@
             value=\"" . $value . "\"/>";
 
         ?>
-                <!-- !!!DEMAIN changer les <p> par des <div class produits>
-                les <div> par des des <div class champ> afin de construire le tableau en css
-                à voir possibilité de td /tr   -->
-                <div class="<?= $class ?>">
-                    <div class="nom"><?= $product['name'] ?> </div>
-                    <div class="info">
-                        <?php if ($class == "rupture") {
+        <div class="<?= $class ?>">
+            <div class="nom"><?= $product['name'] ?> </div>
+            <div class="info">
+                <?php if ($class == "rupture") {
                         ?>
-                            <div>Produit en rupture de stock</div>
-                        <?php
+                <div>Produit en rupture de stock</div>
+                <?php
                         } else {
                         ?>
 
-                            <div> <?= $quantity ?> <?= $product['unit_quantity'] ?></div>
-                            <div> <?= affiche_prix($product['price']) ?>/<?= $product['unit_quantity'] ?></div>
-                            <div> <?= $number ?> <?= $product['unit_quantity'] ?> </div>
-                            <div><?= $submit ?> </div>
-                        <?php
+                <div> <?= $quantity ?> <?= $product['unit_quantity'] ?></div>
+                <div> <?= affiche_prix($product['price']) ?>/<?= $product['unit_quantity'] ?></div>
+                <div> <?= $number ?> <?= $product['unit_quantity'] ?> </div>
+                <div><?= $submit ?> </div>
+                <?php
                         }
                         ?>
-                    </div>
-                </div>
+            </div>
+        </div>
         <?php
             }
 
