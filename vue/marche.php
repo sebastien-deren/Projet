@@ -40,11 +40,14 @@
                     round(intdiv($product['quantity'], 1000)) : $product['quantity'];
                 $class = $quantity_max <= 0 ? "rupture" : "achat";
                 $value_submit = $value == 0 ? "ajouter au panier" : "modifier la quantité";
-                $submit = "<input class=\"submit\" type=\"submit\" name=\"product" . $product['id_product'] . "\" value=\"" . $value_submit . "\"/>";
-                $number = "<input class=\"number\" type=\"number\" name=\"quantity" . $product['id_product'] . "\"
-            min=\"0\" max=\"" . $quantity_max . "\"
-            step=\"1\"
-            value=\"" . $value . "\"/>";
+                $submit = "<input class=\"submit\" type=\"submit\" 
+                        name=\"product" . $product['id_product'] . "\" 
+                        value=\"" . $value_submit . "\"/>";
+                $number = "<input class=\"number\" type=\"number\" 
+                        name=\"quantity" . $product['id_product'] . "\"
+                        min=\"0\" max=\"" . $quantity_max . "\"
+                        step=\"1\"
+                        value=\"" . $value . "\"/>";
 
         ?>
         <div class="<?= $class ?>">

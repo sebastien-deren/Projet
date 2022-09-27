@@ -52,8 +52,7 @@ function add_in_cart_db(int $id, int $quantity)
 {
     include('config/mysql.php');
     $sql_querry = 'INSERT INTO cart(id_product, id_user,quantity_cart) VALUES(:id_product,:id_user,:quantity_cart)';
-    $cart_insert = $db->prepare($sql_querry);
-    $cart_insert->execute(
+    $cart_insert = $db->prepare($sql_querry)->execute(
         [
             'id_product' => $id,
             'id_user' => intval($_SESSION['id']),
@@ -62,13 +61,13 @@ function add_in_cart_db(int $id, int $quantity)
 
         ]
     );
+    return $cart_insert;
 }
 function update_in_cart_db(int $id, int $quantity)
 {
     include('config/mysql.php');
     $sql_querry = 'UPDATE cart SET quantity_cart = :quantity_cart WHERE id_product=:id_product AND id_user=:id_user';
-    $cart_insert = $db->prepare($sql_querry);
-    $cart_insert->execute(
+    $cart_insert = $db->prepare($sql_querry)->execute(
         [
             'id_product' => $id,
             'id_user' => intval($_SESSION['id']),
@@ -77,20 +76,20 @@ function update_in_cart_db(int $id, int $quantity)
 
         ]
     );
+    return $cart_insert;
 }
 //supprime un produit particulier du produit d'un utilisateur
 function delete_item_in_cart_db($id)
 {
     include("config/mysql.php");
     $sql_querry = 'DELETE FROM cart WHERE id_user=:id_user AND id_product=:id_product';
-    $prod_delete = $db->prepare($sql_querry);
-    $prod_delete->execute(
+    $prod_delete = $db->prepare($sql_querry)->execute(
         [
             'id_user' => intval($_SESSION['id']),
             'id_product' => $id,
         ]
     );
-    return;
+    return $prod_delete;
 }
 //supprime le cart de l'utilisateur une fois que tout est commandé
 function delete_cart_db()
@@ -103,5 +102,5 @@ function delete_cart_db()
             'id_user' => intval($_SESSION['id']),
         ]
     );
-    return;
+    return $cart_delete;
 }

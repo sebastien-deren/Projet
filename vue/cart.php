@@ -61,15 +61,15 @@ $cart = get_cart_db();
             <div>
                 <label for="cb">Numéro de carte bancaire</label></br>
                 <input type="tel" id="cb" name="cb" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
-                    placeholder="ne pas remplir">
+                    placeholder="ne pas remplir" disabled>
             </div>
             <div>
                 <label for="date">Date d'expiration</label></br>
-                <input type="date" id="date" name="date"></br>
+                <input type="date" id="date" name="date" disabled></br>
             </div>
             <div>
                 <label for="csv">CSV</label>
-                <input type="tel" id="csv" name="csv" pattern="[0-9]{3}" placeholder="NON">
+                <input type="tel" id="csv" name="csv" pattern="[0-9]{3}" placeholder="NON" disabled>
             </div>
         </div>
         <h4 class="input_botom"><input class="button" type="submit" value="Pay" name="checkout" /> </h4>

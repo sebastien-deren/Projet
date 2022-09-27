@@ -18,7 +18,6 @@ function creer_session(): bool
     }
     return 0;
 }
-// à retravailler ?
 /**
  * verifie que le formulaire à été correctement rempli
  *
@@ -65,17 +64,14 @@ function add_cart(int $id, int $quantity): bool
     $in_cart = check_in_cart_db($id);
     if (0 == $quantity) {
         if (!empty($in_cart)) {
-            delete_item_in_cart_db($id);
-            return true;
+            return delete_item_in_cart_db($id);
         }
         return false;
     }
     if (empty($in_cart)) {
-        add_in_cart_db($id, $quantity);
-        return 1;
+        return add_in_cart_db($id, $quantity);
     } else {
-        update_in_cart_db($id, $quantity);
-        return true;
+        return update_in_cart_db($id, $quantity);
     }
     return false;
 }
