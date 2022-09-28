@@ -11,24 +11,9 @@ if (is_null($n_command)) {
 } else {
 
     $command = get_command($n_command);
-    $n_command--;
 
 ?>
 <section class="command">
-
-    <h2>Dernière commande!</h2>
-    <article class="last_command">
-        <header>
-            <h4> Commande effectué le <?= $command[0]['date'] ?></h4>
-        </header>
-        <div class="list">
-            <?php
-                $parse_command = affiche_commande($command);
-                echo ($parse_command["affiche"]);
-                ?>
-        </div>
-        <div class="total">Total: <?= affiche_prix($parse_command["prix"]) ?></div>
-    </article>
 
     <h2> Commande précedente </h2>
     <?php

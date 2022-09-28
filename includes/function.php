@@ -64,6 +64,7 @@ function add_cart(int $id, int $quantity): bool
     $in_cart = check_in_cart_db($id);
     if (0 == $quantity) {
         if (!empty($in_cart)) {
+
             return delete_item_in_cart_db($id);
         }
         return false;
