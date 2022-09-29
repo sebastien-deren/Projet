@@ -46,7 +46,7 @@
 
 .marche article {
   justify-content: start;
-  min-height: 30vh;
+  min-height: 200px;
   display: flex;
   overflow: auto;
   flex-wrap: wrap;
@@ -62,9 +62,8 @@
   padding: 0;
   margin: 0.2vw;
   display: flex;
-  width: 16vw;
-  min-width: 15vw;
-  height: 15vw;
+  min-width: 300px;
+  min-height: 300px;
   flex-direction: column;
   overflow: auto;
   background-image: url(../images/BOF.jpg);
@@ -74,35 +73,45 @@
   border-radius: 10px;
 }
 .marche .achat .nom {
-  font-size: 2em;
+  font-size: 1.3em;
   background: rgba(0, 0, 0, 0.5);
   color: #f3f3f3;
+  display: flex;
+  
   width: 100%;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-height: 2em;
 }
 .marche .rupture .nom {
-  font-size: 2em;
+  font-size: 1.3em;
   background: rgba(249, 115, 0, 0.5);
   color: #f3f3f3;
   width: 100%;
   text-align: center;
+  justify-content: space-around;
+  min-height: 2em;
 }
 .marche .info {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items:flex-start;
   background: rgba(0, 0, 0, 0.7);
-  width: 100%;
-  height: 30%;
   color: #f3f3f3;
+  width: 100%;
 }
+.marche .info .prix{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
 .marche .rupture .info {
   background: rgba(249, 115, 0, 0.8);
 }
-@media only screen and (max-width: 900px) {
-  .marche .achat,
-  .rupture {
-    width: 35vw;
-    height: 35vw;
-  }
-}
+
 .marche .rupture {
   background-color: tomato;
 }
@@ -110,12 +119,11 @@
   flex-wrap: wrap;
 }
 .marche .number {
-  max-width: 50%;
+  width: 4em;
 }
 .marche .submit {
-  max-width: 90%;
-}
-.marche .imgproduct {
-  height: 10vh;
-  width: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

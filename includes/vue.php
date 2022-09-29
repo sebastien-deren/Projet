@@ -14,8 +14,11 @@ if (!isset($_SESSION['view']) || !isset($_SESSION['id'])) {
 if (isset($_SESSION['id']) && null !== $_SESSION['id']) {
     if (isset($_POST['cart'])) {
         $_SESSION['view'] = "cart";
-    } elseif (isset($_POST['connection']) || isset($_POST['checkout'])) {
+    } elseif ( isset($_POST['checkout'])) {
         $_SESSION['view'] = "default";
+    }
+    else{
+        $_SESSION['view']="marche";
     }
 } else {
     if (!isset($_POST['inscription'])) {
