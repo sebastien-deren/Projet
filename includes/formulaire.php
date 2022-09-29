@@ -31,6 +31,9 @@ for ($i = 0; $i <= $MAX_ID; $i++) {
         add_cart($i, $_POST["quantity" . $i]);
     }
 }
+if(isset($_POST['add_once'])){
+    add_cart($_POST['id_product'],$_POST['quantity']);
+}
 //gère la supression d'item du cart
 if (isset($_POST['supprimer'])) {
     delete_item_in_cart_db($_POST['id_product']);
