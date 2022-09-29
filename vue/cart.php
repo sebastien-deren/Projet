@@ -1,15 +1,4 @@
 <?php
-$test = 4;
-$MAX_ID = get_max_id_products();
-for ($i = 0; $i <= $MAX_ID; $i++) {
-
-    if (isset($_POST["quantity" . $i])) {
-        add_cart($i, $_POST["quantity" . $i]);
-    }
-}
-if (isset($_POST['supprimer'])) {
-    delete_item_in_cart_db($_POST['id_product']);
-}
 $cart = get_cart_db();
 
 ?>
