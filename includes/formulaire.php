@@ -25,8 +25,8 @@ if (isset($_POST['inscrit'])) {
     $verif_inscription =  isset($_POST['inscription']) ? false : true;
 }
 //gere l'ajout d'item au cart
-if(isset($_POST['add_once'])){
-    add_cart($_POST['id_product'],$_POST['quantity']);
+if (isset($_POST['add_once'])) {
+    $ajout_panier = add_cart($_POST['id_product'], $_POST['quantity']);
 }
 //gère la supression d'item du cart
 if (isset($_POST['supprimer'])) {
