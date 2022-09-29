@@ -17,7 +17,7 @@ if (isset($_SESSION['id']) && null !== $_SESSION['id']) {
     } elseif ( isset($_POST['checkout'])) {
         $_SESSION['view'] = "default";
     }
-    else{
+    elseif (isset($_POST['connection'])){
         $_SESSION['view']="marche";
     }
 } else {
