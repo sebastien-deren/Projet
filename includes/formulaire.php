@@ -24,13 +24,7 @@ if (isset($_POST['inscrit'])) {
     }
     $verif_inscription =  isset($_POST['inscription']) ? false : true;
 }
-//gère l'ajout d'item au cart
-$MAX_ID = get_max_id_products();
-for ($i = 0; $i <= $MAX_ID; $i++) {
-    if (isset($_POST["product" . $i])) {
-        add_cart($i, $_POST["quantity" . $i]);
-    }
-}
+//gere l'ajout d'item au cart
 if(isset($_POST['add_once'])){
     add_cart($_POST['id_product'],$_POST['quantity']);
 }
