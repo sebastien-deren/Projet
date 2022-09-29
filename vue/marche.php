@@ -24,8 +24,9 @@
 
         <?php
         foreach ($categories as $category) {
-            echo ('<h2>' . $category . '</h2>');
-            echo ("<article id=\"" . $category . "\">");
+            echo ("<h2 id=\"" . $category . "\">" . $category . "</h2>");
+            echo ("<article >");
+
             $products = product_db($category);
 
             foreach ($products as $product) {
@@ -39,9 +40,11 @@
                 $value_submit = $value == 0 ? "ajouter au panier" : "modifier la quantité";
 
         ?>
-        <form method='POST' action='index.php?view=marche#<?=$product['id_product']?>'>
-            <div class="<?= $class ?> " id="<?=$product['id_product']?>">
-                <div class="nom"><div><?= $product['name'] ?></div> </div>
+        <form method='POST' action='index.php?view=marche#<?= $category ?>'>
+            <div class="<?= $class ?> " id="<?= $product['id_product'] ?>">
+                <div class="nom">
+                    <div><?= $product['name'] ?></div>
+                </div>
                 <div class="info">
                     <?php if ($class == "rupture") {
                             ?>
@@ -56,15 +59,15 @@
                             <?= affiche_prix($product['price']) ?>/<?= $product['unit_quantity'] ?>
                         </div>
                         <div>
-                            <input class='number' type='number' name='quantity' min='0' max='<?=$quantity_max?>'
-                            step='1' value='<?=$value?>'/>
+                            <input class='number' type='number' name='quantity' min='0' max='<?= $quantity_max ?>'
+                                step='1' value='<?= $value ?>' />
                             <?= $product['unit_quantity'] ?>
                         </div>
                     </div>
                     <div class="submit">
-                        <input class ='button' type='submit' name='add_once' value='<?=$value_submit?>'/>
-                        
-                    </div><input type="hidden" value="<?=$product['id_product']?>" name="id_product"/>
+                        <input class='button' type='submit' name='add_once' value='<?= $value_submit ?>' />
+
+                    </div><input type="hidden" value="<?= $product['id_product'] ?>" name="id_product" />
                     <?php
                             }
                             ?>
