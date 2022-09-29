@@ -39,7 +39,7 @@
                 $value_submit = $value == 0 ? "ajouter au panier" : "modifier la quantité";
 
         ?>
-        <form method='POST' action='index.php'>
+        <form method='POST' action='index.php?view=marche#<?=$product['id_product']?>'>
             <div class="<?= $class ?> " id="<?=$product['id_product']?>">
                 <div class="nom"><div><?= $product['name'] ?></div> </div>
                 <div class="info">

@@ -27,5 +27,4 @@ if (isset($_SESSION['id']) && null !== $_SESSION['id']) {
         $_SESSION['view'] = "inscription";
     }
 }
-
 //!!fin de la selection de la vue
